@@ -23,7 +23,6 @@ export default function FormPage() {
       [name]: value,
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,27 +33,40 @@ export default function FormPage() {
     }
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Show loading toast
+      const loadingToast = toast.loading("Submitting application...");
 
-      // Mock HubSpot submission
-      console.log("Submitting to HubSpot:", formData);
-
-      toast.success(
-        "Application submitted successfully! We'll contact you soon."
-      );
-
-      // Reset form
-      setFormData({
-        studentName: "",
-        email: "",
-        phone: "",
-        class: "",
-        school: "",
-        parentName: "",
-        address: "",
-        interests: [],
+      // Submit to HubSpot API
+      const response = await fetch("/api/hubspot-leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success(
+          `Application submitted successfully! Lead ID: ${result.leadId}. We'll contact you soon.`,
+          { id: loadingToast }
+        );
+
+        // Reset form
+        setFormData({
+          studentName: "",
+          email: "",
+          phone: "",
+          class: "",
+          school: "",
+          parentName: "",
+          address: "",
+          interests: [],
+        });
+      } else {
+        throw new Error(result.error || "Submission failed");
+      }
     } catch (error) {
       console.error("Form submission error:", error);
       toast.error("Submission failed. Please try again.");

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
@@ -7,168 +7,117 @@ import {
   PhoneIcon,
   EnvelopeIcon,
 } from "@heroicons/react/24/outline";
+import * as XLSX from "xlsx";
 
 export default function GoogleLeadsPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [campaignFilter, setCampaignFilter] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [googleLeadsData, setGoogleLeadsData] = useState([]);
+  const [stats, setStats] = useState({});
+  const [filters, setFilters] = useState({ campaigns: [], statuses: [] });
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: 10,
+    total: 0,
+    totalPages: 0,
+  });
 
-  // Mock data for Google Leads
-  const googleLeadsData = [
-    {
-      id: "GL001",
-      name: "Rahul Sharma",
-      email: "rahul.sharma@gmail.com",
-      phone: "+91-9876543210",
-      fatherName: "Rajesh Sharma",
-      fatherPhone: "+91-9876543211",
-      age: 12,
-      class: "7",
-      source: "Google Ads",
-      campaign: "Sainik School Prep",
-      keyword: "sainik school coaching",
-      location: "Delhi",
-      status: "New",
-      date: "2025-06-05",
-      score: 85,
-    },
-    {
-      id: "GL002",
-      name: "Priya Gupta",
-      email: "priya.gupta@gmail.com",
-      phone: "+91-9876543212",
-      fatherName: "Amit Gupta",
-      fatherPhone: "+91-9876543213",
-      age: 11,
-      class: "6",
-      source: "Google Search",
-      campaign: "Military School Prep",
-      keyword: "military school entrance",
-      location: "Mumbai",
-      status: "Contacted",
-      date: "2025-06-04",
-      score: 78,
-    },
-    {
-      id: "GL003",
-      name: "Arjun Singh",
-      email: "arjun.singh@gmail.com",
-      phone: "+91-9876543214",
-      fatherName: "Vikram Singh",
-      fatherPhone: "+91-9876543215",
-      age: 13,
-      class: "8",
-      source: "Google Display",
-      campaign: "Defense Academy",
-      keyword: "defense school admission",
-      location: "Bangalore",
-      status: "Qualified",
-      date: "2025-06-03",
-      score: 92,
-    },
-    {
-      id: "GL004",
-      name: "Anjali Patel",
-      email: "anjali.patel@gmail.com",
-      phone: "+91-9876543216",
-      fatherName: "Suresh Patel",
-      fatherPhone: "+91-9876543217",
-      age: 10,
-      class: "5",
-      source: "Google Shopping",
-      campaign: "Prep Materials",
-      keyword: "sainik school books",
-      location: "Ahmedabad",
-      status: "Enrolled",
-      date: "2025-06-02",
-      score: 96,
-    },
-    {
-      id: "GL005",
-      name: "Karan Mehta",
-      email: "karan.mehta@gmail.com",
-      phone: "+91-9876543218",
-      fatherName: "Deepak Mehta",
-      fatherPhone: "+91-9876543219",
-      age: 14,
-      class: "9",
-      source: "Google Video",
-      campaign: "Success Stories",
-      keyword: "sainik school results",
-      location: "Pune",
-      status: "New",
-      date: "2025-06-01",
-      score: 73,
-    },
-  ];
+  // Fetch Google Ads leads from API
+  const fetchGoogleLeads = async (
+    page = 1,
+    search = "",
+    status = "",
+    campaign = ""
+  ) => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({
+        page: page.toString(),
+        limit: pagination.limit.toString(),
+        ...(search && { search }),
+        ...(status && { status }),
+        ...(campaign && { campaign }),
+      });
 
-  const filteredData = useMemo(() => {
-    if (!searchTerm) return googleLeadsData;
+      const response = await fetch(`/api/google-leads?${params}`);
+      const result = await response.json();
 
-    return googleLeadsData.filter(
-      (lead) =>
-        lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        lead.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        lead.phone.includes(searchTerm) ||
-        lead.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        lead.source.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm]);
-
-  const exportToExcel = () => {
-    const headers = [
-      "ID",
-      "Student Name",
-      "Email",
-      "Phone",
-      "Father Name",
-      "Father Phone",
-      "Age",
-      "Class",
-      "Source",
-      "Campaign",
-      "Keyword",
-      "Location",
-      "Status",
-      "Date",
-      "Score",
-    ];
-
-    const csvContent = [
-      headers.join(","),
-      ...filteredData.map((lead) =>
-        [
-          lead.id,
-          `"${lead.name}"`,
-          lead.email,
-          lead.phone,
-          `"${lead.fatherName}"`,
-          lead.fatherPhone,
-          lead.age,
-          lead.class,
-          `"${lead.source}"`,
-          `"${lead.campaign}"`,
-          `"${lead.keyword}"`,
-          `"${lead.location}"`,
-          lead.status,
-          lead.date,
-          lead.score,
-        ].join(",")
-      ),
-    ].join("\\n");
-
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const link = document.createElement("a");
-    const url = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute(
-      "download",
-      `google-leads-${new Date().toISOString().split("T")[0]}.csv`
-    );
-    link.style.visibility = "hidden";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      if (result.success) {
+        setGoogleLeadsData(result.data);
+        setStats(result.stats);
+        setFilters(result.filters);
+        setPagination(result.pagination);
+      } else {
+        console.error("Failed to fetch Google leads:", result.error);
+      }
+    } catch (error) {
+      console.error("Error fetching Google leads:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  // Initial load
+  useEffect(() => {
+    fetchGoogleLeads();
+  }, []);
+
+  // Handle search and filter changes
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      fetchGoogleLeads(1, searchTerm, statusFilter, campaignFilter);
+    }, 500);
+
+    return () => clearTimeout(debounceTimer);
+  }, [searchTerm, statusFilter, campaignFilter]);
+
+  // Export to Excel
+  const exportToExcel = async () => {
+    try {
+      // Fetch all data for export (no pagination)
+      const response = await fetch("/api/google-leads?limit=1000");
+      const result = await response.json();
+
+      if (result.success) {
+        const exportData = result.data.map((lead) => ({
+          "Lead ID": lead.id,
+          Name: lead.name,
+          Email: lead.email,
+          Phone: lead.phone,
+          "Father Name": lead.fatherName,
+          Class: lead.class,
+          School: lead.school,
+          Location: lead.location,
+          Campaign: lead.campaign,
+          "Ad Group": lead.adGroup,
+          Keyword: lead.keyword,
+          "Cost (₹)": lead.cost,
+          Status: lead.status,
+          "Lead Score": lead.leadScore,
+          "Date Created": new Date(lead.dateCreated).toLocaleDateString(),
+          "Last Activity": new Date(lead.lastActivity).toLocaleDateString(),
+          Budget: lead.budget,
+          Timeline: lead.timeline,
+          Interests: lead.interests.join(", "),
+        }));
+
+        const ws = XLSX.utils.json_to_sheet(exportData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Google Ads Leads");
+        XLSX.writeFile(
+          wb,
+          `google_ads_leads_${new Date().toISOString().split("T")[0]}.xlsx`
+        );
+
+        alert("Google Ads leads exported successfully!");
+      }
+    } catch (error) {
+      console.error("Export error:", error);
+      alert("Failed to export leads");
+    }
+  };
   const getStatusColor = (status) => {
     switch (status) {
       case "New":
@@ -191,6 +140,14 @@ export default function GoogleLeadsPage() {
     return "text-red-600 font-semibold";
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white">
       {/* Header */}
@@ -198,14 +155,16 @@ export default function GoogleLeadsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-white">Google Leads</h1>
+              <h1 className="text-3xl font-bold text-white">
+                Google Ads Leads
+              </h1>
               <p className="mt-2 text-blue-100">
                 Manage and track leads from Google Ads campaigns
               </p>
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-blue-100">
-                Total Leads: {filteredData.length}
+                Total Leads: {stats.total || 0}
               </span>
               <button
                 onClick={exportToExcel}
@@ -234,19 +193,29 @@ export default function GoogleLeadsPage() {
           </div>
 
           <div className="flex items-center space-x-4">
-            <select className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500">
-              <option>All Status</option>
-              <option>New</option>
-              <option>Contacted</option>
-              <option>Qualified</option>
-              <option>Enrolled</option>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">All Status</option>
+              {filters.statuses.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
             </select>
-            <select className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500">
-              <option>All Sources</option>
-              <option>Google Ads</option>
-              <option>Google Search</option>
-              <option>Google Display</option>
-              <option>Google Video</option>
+            <select
+              value={campaignFilter}
+              onChange={(e) => setCampaignFilter(e.target.value)}
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">All Campaigns</option>
+              {filters.campaigns.map((campaign) => (
+                <option key={campaign} value={campaign}>
+                  {campaign}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -261,7 +230,7 @@ export default function GoogleLeadsPage() {
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Total Leads</p>
                 <p className="text-2xl font-semibold text-gray-900">
-                  {googleLeadsData.length}
+                  {stats.total || 0}
                 </p>
               </div>
             </div>
@@ -275,10 +244,7 @@ export default function GoogleLeadsPage() {
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Contacted</p>
                 <p className="text-2xl font-semibold text-gray-900">
-                  {
-                    googleLeadsData.filter((l) => l.status === "Contacted")
-                      .length
-                  }
+                  {stats.contacted || 0}
                 </p>
               </div>
             </div>
@@ -292,10 +258,7 @@ export default function GoogleLeadsPage() {
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Qualified</p>
                 <p className="text-2xl font-semibold text-gray-900">
-                  {
-                    googleLeadsData.filter((l) => l.status === "Qualified")
-                      .length
-                  }
+                  {stats.qualified || 0}
                 </p>
               </div>
             </div>
@@ -307,17 +270,9 @@ export default function GoogleLeadsPage() {
                 <ArrowDownTrayIcon className="h-6 w-6 text-yellow-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">
-                  Conversion Rate
-                </p>
+                <p className="text-sm font-medium text-gray-600">Avg Cost</p>
                 <p className="text-2xl font-semibold text-gray-900">
-                  {Math.round(
-                    (googleLeadsData.filter((l) => l.status === "Enrolled")
-                      .length /
-                      googleLeadsData.length) *
-                      100
-                  )}
-                  %
+                  ₹{stats.avgCost || 0}
                 </p>
               </div>
             </div>
@@ -340,18 +295,18 @@ export default function GoogleLeadsPage() {
                     Academic Info
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Source Details
+                    Campaign Details
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Score
+                    Score & Cost
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredData.map((lead) => (
+                {googleLeadsData.map((lead) => (
                   <tr key={lead.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
@@ -382,20 +337,23 @@ export default function GoogleLeadsPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm text-gray-900">
-                          Age: {lead.age}
+                          Class: {lead.class}
                         </div>
                         <div className="text-sm text-gray-500">
-                          Class: {lead.class}
+                          {lead.school}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          Interests: {lead.interests?.join(", ") || "N/A"}
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm text-gray-900">
-                          {lead.source}
+                          {lead.campaign}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {lead.campaign}
+                          {lead.adGroup}
                         </div>
                         <div className="text-sm text-gray-500">
                           {lead.keyword}
@@ -411,23 +369,72 @@ export default function GoogleLeadsPage() {
                         {lead.status}
                       </span>
                       <div className="text-xs text-gray-500 mt-1">
-                        {lead.date}
+                        {new Date(lead.dateCreated).toLocaleDateString()}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span
-                        className={`text-sm font-medium ${getScoreColor(
-                          lead.score
-                        )}`}
-                      >
-                        {lead.score}%
-                      </span>
+                      <div>
+                        <span
+                          className={`text-sm font-medium ${getScoreColor(
+                            lead.leadScore
+                          )}`}
+                        >
+                          {lead.leadScore}%
+                        </span>
+                        <div className="text-sm text-gray-500">
+                          ₹{lead.cost}
+                        </div>
+                      </div>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+
+          {/* Pagination */}
+          {pagination.totalPages > 1 && (
+            <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
+              <div className="text-sm text-gray-700">
+                Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
+                {Math.min(pagination.page * pagination.limit, pagination.total)}{" "}
+                of {pagination.total} results
+              </div>
+              <div className="flex space-x-2">
+                <button
+                  onClick={() =>
+                    fetchGoogleLeads(
+                      pagination.page - 1,
+                      searchTerm,
+                      statusFilter,
+                      campaignFilter
+                    )
+                  }
+                  disabled={pagination.page <= 1}
+                  className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+                >
+                  Previous
+                </button>
+                <span className="px-3 py-1 text-sm">
+                  Page {pagination.page} of {pagination.totalPages}
+                </span>
+                <button
+                  onClick={() =>
+                    fetchGoogleLeads(
+                      pagination.page + 1,
+                      searchTerm,
+                      statusFilter,
+                      campaignFilter
+                    )
+                  }
+                  disabled={pagination.page >= pagination.totalPages}
+                  className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
