@@ -15,7 +15,8 @@ export default function HubSpotLeadsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [classFilter, setClassFilter] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [tableLoading, setTableLoading] = useState(true);
+  const [exportLoading, setExportLoading] = useState(false);
   const [hubspotLeadsData, setHubspotLeadsData] = useState([]);
   const [stats, setStats] = useState({});
   const [filters, setFilters] = useState({ classes: [], statuses: [] });
@@ -24,16 +25,14 @@ export default function HubSpotLeadsPage() {
     limit: 10,
     total: 0,
     totalPages: 0,
-  });
-
-  // Fetch HubSpot leads from API
+  }); // Fetch HubSpot leads from API
   const fetchHubspotLeads = async (
     page = 1,
     search = "",
     status = "",
     classValue = ""
   ) => {
-    setLoading(true);
+    setTableLoading(true);
     try {
       const params = new URLSearchParams({
         page: page.toString(),
@@ -57,15 +56,12 @@ export default function HubSpotLeadsPage() {
     } catch (error) {
       console.error("Error fetching HubSpot leads:", error);
     } finally {
-      setLoading(false);
+      setTableLoading(false);
     }
-  };
-
-  // Initial load
+  }; // Initial load
   useEffect(() => {
-    fetchHubspotLeads();
+    fetchHubspotLeads(1, "", "", "");
   }, []);
-
   // Handle search and filter changes
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
@@ -77,9 +73,17 @@ export default function HubSpotLeadsPage() {
 
   // Export to Excel
   const exportToExcel = async () => {
+    setExportLoading(true);
     try {
-      // Fetch all data for export (no pagination)
-      const response = await fetch("/api/hubspot-leads?limit=1000");
+      // Fetch filtered data for export (with current search and filter parameters)
+      const params = new URLSearchParams({
+        limit: "1000", // Get all filtered results
+        ...(searchTerm && { search: searchTerm }),
+        ...(statusFilter && { status: statusFilter }),
+        ...(classFilter && { class: classFilter }),
+      });
+
+      const response = await fetch(`/api/hubspot-leads?${params}`);
       const result = await response.json();
 
       if (result.success) {
@@ -114,6 +118,8 @@ export default function HubSpotLeadsPage() {
     } catch (error) {
       console.error("Export error:", error);
       alert("Failed to export leads");
+    } finally {
+      setExportLoading(false);
     }
   };
 
@@ -133,7 +139,6 @@ export default function HubSpotLeadsPage() {
         return "bg-gray-100 text-gray-800";
     }
   };
-
   const getScoreColor = (score) => {
     if (score >= 90) return "text-green-600 font-semibold";
     if (score >= 80) return "text-blue-600 font-semibold";
@@ -141,19 +146,12 @@ export default function HubSpotLeadsPage() {
     return "text-red-600 font-semibold";
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
-      </div>
-    );
-  }
   return (
     <div className="bg-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-8 pt-24">
+      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py- pt-20">
         {/* Added pt-24 for fixed navbar */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-white">HubSpot Leads</h1>
@@ -164,13 +162,18 @@ export default function HubSpotLeadsPage() {
             <div className="flex items-center space-x-4">
               <span className="text-purple-100">
                 Total Leads: {stats.total || 0}
-              </span>
+              </span>{" "}
               <button
                 onClick={exportToExcel}
-                className="flex items-center space-x-2 bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
+                disabled={exportLoading}
+                className="flex items-center space-x-2 bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-purple-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <ArrowDownTrayIcon className="h-5 w-5" />
-                <span>Export Excel</span>
+                {exportLoading ? (
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-purple-600"></div>
+                ) : (
+                  <ArrowDownTrayIcon className="h-5 w-5" />
+                )}
+                <span>{exportLoading ? "Exporting..." : "Export Excel"}</span>
               </button>
             </div>
           </div>
@@ -307,7 +310,18 @@ export default function HubSpotLeadsPage() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {hubspotLeadsData && hubspotLeadsData.length > 0 ? (
+                {tableLoading ? (
+                  <tr>
+                    <td colSpan="6" className="px-6 py-12 text-center">
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                        <span className="ml-3 text-gray-500">
+                          Loading leads...
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : hubspotLeadsData && hubspotLeadsData.length > 0 ? (
                   hubspotLeadsData.map((lead) => (
                     <tr key={lead.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -408,6 +422,7 @@ export default function HubSpotLeadsPage() {
                 of {pagination.total} results
               </div>
               <div className="flex space-x-2">
+                {" "}
                 <button
                   onClick={() =>
                     fetchHubspotLeads(
@@ -424,7 +439,7 @@ export default function HubSpotLeadsPage() {
                 </button>
                 <span className="px-3 py-1 text-sm">
                   Page {pagination.page} of {pagination.totalPages}
-                </span>
+                </span>{" "}
                 <button
                   onClick={() =>
                     fetchHubspotLeads(

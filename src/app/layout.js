@@ -19,9 +19,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="h-ful bg-whit">
+    <html lang="en" className="h-full bg-white">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-ful`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
         <SharedLayout>{children}</SharedLayout>
       </body>

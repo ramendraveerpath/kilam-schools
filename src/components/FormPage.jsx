@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
-export default function FormPage() {
+export default function FormPageFixed() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     studentName: "",
@@ -23,10 +23,9 @@ export default function FormPage() {
       [name]: value,
     }));
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    // Basic validation
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Basic validation
     if (!formData.studentName || !formData.email || !formData.phone) {
       toast.error("Please fill in all required fields");
       return;
@@ -50,7 +49,10 @@ export default function FormPage() {
       if (result.success) {
         toast.success(
           `Application submitted successfully! Lead ID: ${result.leadId}. We'll contact you soon.`,
-          { id: loadingToast }
+          {
+            duration: 5000,
+            dismiss: loadingToast,
+          }
         );
 
         // Reset form
@@ -65,6 +67,7 @@ export default function FormPage() {
           interests: [],
         });
       } else {
+        toast.dismiss(loadingToast);
         throw new Error(result.error || "Submission failed");
       }
     } catch (error) {
@@ -74,19 +77,16 @@ export default function FormPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <Toaster position="top-right" />
-
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 py-16 pt-24">
-        {/* Added pt-24 for fixed navbar */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="bg-white">
+      <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 py- pt-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Enquiry Form
+              Admission Enquiry
             </h1>
-            <p className="mt-6 text-lg leading-8 text-indigo-200">
-              Take the first step towards your Sainik School and Military School
-              dreams.
+            <p className="mt-6 text-lg leading-8 text-yellow-100">
+              Take the first step towards joining VEERPATH DEFENCE ACADEMY -
+              Where Excellence Meets Discipline.
             </p>
           </div>
         </div>
@@ -108,10 +108,9 @@ export default function FormPage() {
               value={formData.studentName}
               onChange={handleInputChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             />
           </div>
-
           <div>
             <label
               htmlFor="email"
@@ -126,10 +125,9 @@ export default function FormPage() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             />
           </div>
-
           <div>
             <label
               htmlFor="phone"
@@ -144,10 +142,9 @@ export default function FormPage() {
               value={formData.phone}
               onChange={handleInputChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             />
           </div>
-
           <div>
             <label
               htmlFor="class"
@@ -160,7 +157,7 @@ export default function FormPage() {
               name="class"
               value={formData.class}
               onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             >
               <option value="">Select Class</option>
               <option value="6th">6th Class</option>
@@ -170,7 +167,6 @@ export default function FormPage() {
               <option value="10th">10th Class</option>
             </select>
           </div>
-
           <div>
             <label
               htmlFor="school"
@@ -184,10 +180,9 @@ export default function FormPage() {
               name="school"
               value={formData.school}
               onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             />
           </div>
-
           <div>
             <label
               htmlFor="parentName"
@@ -201,10 +196,9 @@ export default function FormPage() {
               name="parentName"
               value={formData.parentName}
               onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             />
           </div>
-
           <div>
             <label
               htmlFor="address"
@@ -218,27 +212,27 @@ export default function FormPage() {
               rows={3}
               value={formData.address}
               onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             />
           </div>
-
           <div className="flex gap-4">
             <button
               type="submit"
-              className="flex-1 rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="flex-1 rounded-md bg-yellow-500 px-4 py-3 text-sm font-semibold text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 shadow-lg cursor-pointer"
             >
               Submit Application
             </button>
             <button
               type="button"
               onClick={() => router.push("/")}
-              className="rounded-md bg-gray-600 px-4 py-3 text-sm font-semibold text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              className="rounded-md bg-gray-600 px-4 py-3 text-sm font-semibold text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 cursor-pointer"
             >
               ← Back to Home
             </button>
-          </div>
+          </div>{" "}
         </form>
       </div>
+      <Toaster position="top-right" />
     </div>
   );
 }

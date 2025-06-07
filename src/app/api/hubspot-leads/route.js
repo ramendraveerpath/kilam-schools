@@ -86,15 +86,14 @@ export async function GET(request) {
     if (hubspotLeads.length === 0) {
       hubspotLeads = initialHubSpotLeads;
       await writeLeadsToFile(hubspotLeads);
-    }
-
-    // Get query parameters
+    } // Get query parameters
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
     const search = searchParams.get("search") || "";
     const status = searchParams.get("status") || "";
     const source = searchParams.get("source") || "";
+    const classValue = searchParams.get("class") || "";
 
     let filteredLeads = [...hubspotLeads];
 
@@ -118,6 +117,11 @@ export async function GET(request) {
     // Apply source filter
     if (source) {
       filteredLeads = filteredLeads.filter((lead) => lead.source === source);
+    }
+
+    // Apply class filter
+    if (classValue) {
+      filteredLeads = filteredLeads.filter((lead) => lead.class === classValue);
     }
 
     // Sort by date created (newest first)

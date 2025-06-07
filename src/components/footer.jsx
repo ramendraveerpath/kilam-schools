@@ -1,30 +1,33 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { TrophyIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
-  const router = useRouter();
-
-  const handleEnquiryClick = () => {
-    router.push("/form");
-  };
-
   return (
-    <footer className="bg-gray-900 mt-32">
+    <footer className="bg-gray-900 mt-12 md:mt-24">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
+            {" "}
             <div className="flex items-center">
-              <TrophyIcon className="h-8 w-8 text-yellow-500" />
-              <span className="ml-2 text-xl font-bold text-white">
-                Sainik Academy
+              <Image
+                src="/images/logo.png"
+                alt="logo"
+                width={100}
+                height={70}
+              />
+              <span className="ml-2 text-xl md:text-2xl font-bold text-white">
+                VEERPATH DEFENCE ACADEMY
               </span>
             </div>
             <p className="mt-4 text-gray-400 max-w-md">
-              Leading the way in Sainik School and Military School entrance exam
-              preparation with expert guidance and proven results.
+              <span className="font-semibold">विश्वास और अनुशासन से सफलता</span>
+              <br />
+              Premier coaching for Navodaya & Sainik School entrance exams with
+              result-driven educational excellence.
             </p>{" "}
-            <div className="mt-6 flex space-x-4">
+            {/* social media. rahul, link laga diyo isme */}
+            {/* <div className="mt-6 flex space-x-4">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -70,55 +73,50 @@ export default function Footer() {
                   <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.5 13.588 3.5 12.017c0-1.297.49-2.448 1.297-3.323C5.694 7.866 6.999 7.168 8.57 7.168c1.297 0 2.448.49 3.323 1.297.875.806 1.573 2.113 1.573 3.684 0 1.297-.49 2.448-1.297 3.323-.875.805-2.18 1.503-3.75 1.503z" />
                 </svg>
               </a>
-            </div>
-          </div>
-
+            </div> */}
+          </div>{" "}
           <div>
-            <h3 className="text-sm font-semibold text-white">Quick Links</h3>
+            <h3 className="text-sm font-semibold text-white">Quick Links</h3>{" "}
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#features" className="text-gray-400 hover:text-white">
-                  Features
-                </a>
+                <Link href="/" className="text-gray-400 hover:text-white">
+                  Home
+                </Link>
               </li>
               <li>
-                <a href="/form" className="text-gray-400 hover:text-white">
-                  Enquiry Form
-                </a>
+                <Link href="/about" className="text-gray-400 hover:text-white">
+                  About Us
+                </Link>
               </li>
+
               <li>
-                <button
-                  onClick={handleEnquiryClick}
-                  className="text-gray-400 hover:text-white"
-                >
-                  Apply Now
-                </button>
-              </li>
-              <li>
-                <a
-                  href="tel:+91-9999999999"
+                <Link
+                  href="/contact"
                   className="text-gray-400 hover:text-white"
                 >
                   Contact
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/form" className="text-gray-400 hover:text-white">
+                  Enroll Now
+                </Link>
               </li>
             </ul>
           </div>
-
           <div>
             <h3 className="text-sm font-semibold text-white">Contact Info</h3>
             <ul className="mt-4 space-y-2 text-gray-400">
-              <li>📧 info@sainikacademy.com</li>
-              <li>📞 +91-9999999999</li>
-              <li>📍 New Delhi, India</li>
+              <li>📞 +91-9897841033</li>
+              <li>📍 832 Radhanagar, Bulandshahr</li>
               <li>🕒 Mon-Sat: 9AM-6PM</li>
+              <li>🏆 1000+ Successful Selections</li>
             </ul>
           </div>
-        </div>
-
+        </div>{" "}
         <div className="mt-12 pt-8 border-t border-gray-800 text-center">
           <p className="text-gray-400">
-            &copy; 2025 Sainik Academy. All rights reserved.
+            &copy; 2025 VEERPATH DEFENCE ACADEMY. All rights reserved.
           </p>
         </div>
       </div>
