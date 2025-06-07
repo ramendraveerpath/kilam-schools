@@ -77,7 +77,8 @@ export default function FormPage() {
     <div className="bg-white min-h-screen">
       <Toaster position="top-right" />
 
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 py-16">
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 py-16 pt-24">
+        {/* Added pt-24 for fixed navbar */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">

@@ -148,11 +148,11 @@ export default function HubSpotLeadsPage() {
       </div>
     );
   }
-
   return (
     <div className="bg-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-8">
+      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-8 pt-24">
+        {/* Added pt-24 for fixed navbar */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div>

@@ -78,7 +78,8 @@ export default function HomePage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-14">
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-24">
+        {/* Added pt-24 for fixed navbar */}
         <div
           aria-hidden="true"
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
@@ -193,7 +194,10 @@ export default function HomePage() {
         </div>
       </div>{" "}
       {/* Testimonials Section */}
-      <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
+      <div
+        id="testimonials"
+        className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8"
+      >
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
             Success Stories
