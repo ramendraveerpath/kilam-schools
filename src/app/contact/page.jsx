@@ -362,7 +362,7 @@ export default function ContactPage() {
                         Visit Hours
                       </h3>
                       <p className="text-gray-700 font-medium">
-                        Mon-Sat: 9:00 AM - 6:00 PM
+                        Mon-Sat: 7:00 AM - 11:00 PM
                       </p>
                       <p className="text-sm text-gray-500 mt-2">
                         Sunday by appointment

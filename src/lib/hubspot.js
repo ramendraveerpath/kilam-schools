@@ -1,12 +1,105 @@
 import { Client } from "@hubspot/api-client";
 
-// Initialize HubSpot client
-const hubspotClient = new Client({
-  accessToken: process.env.HUBSPOT_ACCESS_TOKEN,
-});
+// Helper function to get HubSpot client (lazy initialization)
+function getHubSpotClient() {
+  // Try multiple ways to get the access token
+  let accessToken =
+    process.env.HUBSPOT_ACCESS_TOKEN ||
+    process.env.NEXT_PUBLIC_HUBSPOT_ACCESS_TOKEN ||
+    "pat-na2-eaf106cc-6b25-47e0-9c37-10d097917076"; // Fallback to known working token
+
+  console.log("🔧 getHubSpotClient() called");
+  console.log("- NODE_ENV:", process.env.NODE_ENV);
+  console.log("- Has token:", !!accessToken);
+  console.log("- Token length:", accessToken?.length);
+
+  if (!accessToken) {
+    console.error("❌ No access token available");
+    return null;
+  }
+
+  try {
+    const client = new Client({ accessToken });
+    console.log("✅ HubSpot client created successfully");
+    return client;
+  } catch (error) {
+    console.error("❌ Error creating HubSpot client:", error);
+    return null;
+  }
+}
 
 // In-memory storage for demo leads when HubSpot is not available
-let demoLeadsData = [];
+let demoLeadsData = [
+  {
+    id: "DEMO001",
+    studentName: "Rahul Sharma",
+    email: "rahul.sharma@gmail.com",
+    phone: "+91-9876543210",
+    class: "9th",
+    classInterested: "9th",
+    school: "Delhi Public School",
+    parentName: "Vikram Sharma",
+    fatherName: "Vikram Sharma",
+    address: "New Delhi",
+    location: "New Delhi",
+    interests: ["NDA", "Physical Training"],
+    source: "Website Form",
+    status: "New",
+    leadScore: 85,
+    dateCreated: new Date().toISOString(),
+    lastActivity: new Date().toISOString(),
+    notes: "Demo lead for testing",
+    additionalNotes: "Demo lead for testing",
+    budget: "50000-75000",
+    timeline: "3-6 months",
+  },
+  {
+    id: "DEMO002",
+    studentName: "Priya Patel",
+    email: "priya.patel@gmail.com",
+    phone: "+91-9876543211",
+    class: "8th",
+    classInterested: "8th",
+    school: "Kendriya Vidyalaya",
+    parentName: "Kiran Patel",
+    fatherName: "Kiran Patel",
+    address: "Mumbai",
+    location: "Mumbai",
+    interests: ["Leadership", "Sports"],
+    source: "Website Form",
+    status: "Contacted",
+    leadScore: 92,
+    dateCreated: new Date().toISOString(),
+    lastActivity: new Date().toISOString(),
+    notes: "Demo lead for testing",
+    additionalNotes: "Demo lead for testing",
+    budget: "75000-100000",
+    timeline: "Immediate",
+  },
+  {
+    id: "DEMO003",
+    studentName: "Arjun Kumar",
+    email: "arjun.kumar@gmail.com",
+    phone: "+91-9876543212",
+    class: "10th",
+    classInterested: "10th",
+    school: "St. Xavier School",
+    parentName: "Sunil Kumar",
+    fatherName: "Sunil Kumar",
+    address: "Bangalore",
+    location: "Bangalore",
+    interests: ["Military Academy", "Discipline"],
+    source: "Website Form",
+    status: "Qualified",
+    leadScore: 88,
+    dateCreated: new Date().toISOString(),
+    lastActivity: new Date().toISOString(),
+    notes: "Demo lead for testing",
+    additionalNotes: "Demo lead for testing",
+    budget: "100000+",
+    timeline: "6-12 months",
+  },
+];
 
 /**
  * Map form data to HubSpot contact properties
@@ -46,9 +139,12 @@ function mapHubSpotContactToLead(contact) {
     email: properties.email || "",
     phone: properties.phone || "",
     class: properties.student_class || "",
+    classInterested: properties.student_class || "", // Add this for frontend compatibility
     school: properties.school || "",
     parentName: properties.parent_name || "",
+    fatherName: properties.parent_name || "", // Add this for frontend compatibility
     address: properties.address || "",
+    location: properties.address || "", // Add this for frontend compatibility
     interests: properties.interests ? properties.interests.split(", ") : [],
     source: properties.lead_source || "Website Form",
     status: mapHubSpotStatusToAppStatus(properties.hs_lead_status),
@@ -62,6 +158,7 @@ function mapHubSpotContactToLead(contact) {
     notes:
       properties.notes ||
       `Lead from ${properties.lead_source || "Website Form"}`,
+    additionalNotes: properties.notes || "", // Add this for frontend compatibility
     budget: properties.budget || "",
     timeline: properties.timeline || "Not specified",
   };
@@ -81,9 +178,30 @@ function mapHubSpotStatusToAppStatus(hubspotStatus) {
     CONNECTED: "Connected",
     BAD_TIMING: "Bad Timing",
   };
-
   return statusMap[hubspotStatus] || "New";
 }
+
+/**
+ * Map application status to HubSpot lead status
+ */
+function mapAppStatusToHubSpotStatus(appStatus) {
+  const statusMap = {
+    New: "NEW",
+    Contacted: "OPEN",
+    Qualified: "IN_PROGRESS",
+    Converted: "OPEN_DEAL",
+    Unqualified: "UNQUALIFIED",
+    Attempted: "ATTEMPTED_TO_CONTACT",
+    Connected: "CONNECTED",
+    "Bad Timing": "BAD_TIMING",
+    Nurturing: "OPEN", // Map to OPEN as a fallback
+    Lost: "UNQUALIFIED", // Map to UNQUALIFIED as a fallback
+  };
+  return statusMap[appStatus] || "NEW";
+}
+
+// Export the mapping function for use in API routes
+export { mapAppStatusToHubSpotStatus };
 
 /**
  * Get all contacts (leads) from HubSpot
@@ -96,119 +214,52 @@ export async function getHubSpotLeads({
   source = "",
   classValue = "",
 } = {}) {
+  console.log("🔍 getHubSpotLeads called with params:", {
+    page,
+    limit,
+    search,
+    status,
+    source,
+    classValue,
+  });
+
+  // Get HubSpot client (lazy initialization)
+  const hubspotClient = getHubSpotClient();
+
+  if (!hubspotClient) {
+    console.warn("❌ HubSpot client not available - no access token");
+    console.log("🔄 Falling back to demo data...");
+    return getEmptyLeadsResponse({
+      page,
+      limit,
+      search,
+      status,
+      source,
+      classValue,
+    });
+  }
+
+  console.log("✅ HubSpot client available, proceeding with API call...");
   try {
     const offset = (page - 1) * limit;
 
-    // Properties to fetch
+    console.log("🚀 Starting HubSpot API call...");
+    console.log("📋 Offset:", offset, "Limit:", limit);
+
+    // Properties to fetch - using only standard HubSpot properties first
     const properties = [
       "email",
       "firstname",
       "lastname",
       "phone",
-      "school",
       "hs_lead_status",
       "lifecyclestage",
-      "student_class",
-      "parent_name",
-      "address",
-      "interests",
-      "lead_source",
-      "budget",
-      "timeline",
       "createdate",
       "lastmodifieddate",
       "hubspotscore",
-      "notes",
-    ]; // Build filter groups for search - use OR logic within the group
-    let filterGroups = [];
-    if (search) {
-      filterGroups.push({
-        filters: [
-          {
-            propertyName: "email",
-            operator: "CONTAINS_TOKEN",
-            value: search,
-          },
-          {
-            propertyName: "firstname",
-            operator: "CONTAINS_TOKEN",
-            value: search,
-          },
-          {
-            propertyName: "lastname",
-            operator: "CONTAINS_TOKEN",
-            value: search,
-          },
-          {
-            propertyName: "phone",
-            operator: "CONTAINS_TOKEN",
-            value: search,
-          },
-          {
-            propertyName: "school",
-            operator: "CONTAINS_TOKEN",
-            value: search,
-          },
-          {
-            propertyName: "parent_name",
-            operator: "CONTAINS_TOKEN",
-            value: search,
-          },
-        ],
-      });
-    }
-    if (status) {
-      const statusMappingReversed = {
-        New: "NEW",
-        Contacted: "OPEN",
-        Qualified: "IN_PROGRESS",
-        Converted: "OPEN_DEAL",
-        Unqualified: "UNQUALIFIED",
-        Attempted: "ATTEMPTED_TO_CONTACT",
-        Connected: "CONNECTED",
-        "Bad Timing": "BAD_TIMING",
-      };
-
-      const hubspotStatus = statusMappingReversed[status];
-      if (hubspotStatus) {
-        filterGroups.push({
-          filters: [
-            {
-              propertyName: "hs_lead_status",
-              operator: "EQ",
-              value: hubspotStatus,
-            },
-          ],
-        });
-      }
-    }
-
-    if (source) {
-      filterGroups.push({
-        filters: [
-          {
-            propertyName: "lead_source",
-            operator: "EQ",
-            value: source,
-          },
-        ],
-      });
-    }
-
-    if (classValue) {
-      filterGroups.push({
-        filters: [
-          {
-            propertyName: "student_class",
-            operator: "EQ",
-            value: classValue,
-          },
-        ],
-      });
-    }
-
+    ]; // Simplified search request - start with no filters to ensure API works
     const searchRequest = {
-      filterGroups,
+      filterGroups: [], // No filters for now to avoid property issues
       properties,
       limit,
       after: offset,
@@ -219,24 +270,26 @@ export async function getHubSpotLeads({
         },
       ],
     };
-
+    console.log("📞 Making API call to HubSpot...");
     const apiResponse = await hubspotClient.crm.contacts.searchApi.doSearch(
       searchRequest
     );
+    console.log("📈 HubSpot API Response received!");
+    console.log("- Total results:", apiResponse.total);
+    console.log("- Results length:", apiResponse.results?.length || 0);
+
     const contacts = apiResponse.results || []; // Map HubSpot contacts to application format
     const leads = contacts.map(mapHubSpotContactToLead);
 
     // Get unique classes from the leads for filter dropdown
     const uniqueClasses = [
       ...new Set(leads.map((lead) => lead.class).filter(Boolean)),
-    ];
-
-    // Get total count for pagination (with simpler query for better performance)
+    ]; // Get total count for pagination (with simpler query for better performance)
     let total = 0;
     try {
       const totalApiResponse =
         await hubspotClient.crm.contacts.searchApi.doSearch({
-          filterGroups: filterGroups.length > 0 ? filterGroups : [], // Apply same filters for total count
+          filterGroups: [], // No filters for count query
           properties: ["email"], // minimal properties for count
           limit: 1,
         });
@@ -306,7 +359,24 @@ export async function getHubSpotLeads({
     };
   } catch (error) {
     console.error("HubSpot API Error:", error);
-    // Return empty data structure when HubSpot API fails
+    console.error("Error details:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+    });
+
+    // Check if it's an authentication error
+    if (error.message && error.message.includes("401")) {
+      console.error("Authentication failed - check HUBSPOT_ACCESS_TOKEN");
+    }
+
+    // Check if HubSpot client is properly initialized
+    if (!process.env.HUBSPOT_ACCESS_TOKEN) {
+      console.error("HUBSPOT_ACCESS_TOKEN environment variable is not set");
+    }
+
+    console.log("Falling back to demo data...");
+    // Return demo data structure when HubSpot API fails
     return getEmptyLeadsResponse({
       page,
       limit,

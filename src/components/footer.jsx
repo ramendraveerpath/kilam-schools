@@ -110,7 +110,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-gray-400">
               <li>📞 +91-9897841033</li>
               <li>📍 832 Radhanagar, Bulandshahr</li>
-              <li>🕒 Mon-Sat: 9AM-6PM</li>
+              <li>🕒 Mon-Sat: 7AM-11PM</li>
               <li>🏆 1000+ Successful Selections</li>
             </ul>
           </div>

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { mapAppStatusToHubSpotStatus } from "@/lib/hubspot";
 
 export async function PATCH(request, { params }) {
   try {
@@ -10,7 +11,14 @@ export async function PATCH(request, { params }) {
         { success: false, error: "Lead ID and status are required" },
         { status: 400 }
       );
-    }
+    } // Convert app status to HubSpot status
+    const hubspotStatus = mapAppStatusToHubSpotStatus(status);
+
+    console.log("Updating lead status:", {
+      leadId: id,
+      originalStatus: status,
+      mappedStatus: hubspotStatus,
+    });
 
     const hubspotResponse = await fetch(
       `https://api.hubapi.com/crm/v3/objects/contacts/${id}`,
@@ -22,17 +30,28 @@ export async function PATCH(request, { params }) {
         },
         body: JSON.stringify({
           properties: {
-            hs_lead_status: status,
+            hs_lead_status: hubspotStatus,
           },
         }),
       }
     );
-
     if (!hubspotResponse.ok) {
       const errorData = await hubspotResponse.text();
-      console.error("HubSpot API error:", errorData);
+      console.error("HubSpot API error:", {
+        status: hubspotResponse.status,
+        statusText: hubspotResponse.statusText,
+        error: errorData,
+        leadId: id,
+        requestedStatus: status,
+        mappedHubSpotStatus: hubspotStatus,
+      });
       return NextResponse.json(
-        { success: false, error: "Failed to update lead status in HubSpot" },
+        {
+          success: false,
+          error: "Failed to update lead status in HubSpot",
+          details: errorData,
+          hubspotStatus: hubspotResponse.status,
+        },
         { status: hubspotResponse.status }
       );
     }

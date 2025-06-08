@@ -19,9 +19,8 @@ export default function AdminLogin() {
     setError("");
 
     const result = login(email, password);
-
     if (result.success) {
-      // Redirect to the page they were trying to access or default to google-leads
+      // Redirect to the page they were trying to access or default to hubspot-leads
       const redirectTo =
         sessionStorage.getItem("redirectAfterLogin") || "/hubspot-leads";
       sessionStorage.removeItem("redirectAfterLogin");

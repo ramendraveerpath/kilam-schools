@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
@@ -8,6 +8,7 @@ import {
   PhoneIcon,
   EnvelopeIcon,
   UserIcon,
+  ArrowPathIcon,
 } from "@heroicons/react/24/outline";
 import * as XLSX from "xlsx";
 import { useToast } from "../../components/Toast";
@@ -20,7 +21,9 @@ function HubSpotLeadsPage() {
   const [classFilter, setClassFilter] = useState("");
   const [tableLoading, setTableLoading] = useState(true);
   const [exportLoading, setExportLoading] = useState(false);
-  const [hubspotLeadsData, setHubspotLeadsData] = useState([]);
+  const [filteringActive, setFilteringActive] = useState(false);
+  const [allLeadsData, setAllLeadsData] = useState([]); // Store all leads for frontend filtering
+  const [filteredLeads, setFilteredLeads] = useState([]); // Filtered leads to display
   const [stats, setStats] = useState({});
   const [filters, setFilters] = useState({ classes: [], statuses: [] });
   const [pagination, setPagination] = useState({
@@ -30,7 +33,6 @@ function HubSpotLeadsPage() {
     totalPages: 0,
   });
   const [updating, setUpdating] = useState(null); // Track which lead is being updated
-
   // Function to update lead status
   const updateLeadStatus = async (leadId, newStatus) => {
     setUpdating(leadId);
@@ -44,27 +46,23 @@ function HubSpotLeadsPage() {
       });
 
       const result = await response.json();
-
       if (result.success) {
-        // Update the local state to reflect the change
-        setHubspotLeadsData((prevData) =>
+        // Update both the all leads data and filtered leads
+        setAllLeadsData((prevData) =>
           prevData.map((lead) =>
             lead.id === leadId ? { ...lead, status: newStatus } : lead
           )
         );
 
-        // Refresh data to update stats
-        await fetchHubspotLeads(
-          pagination.page,
-          searchTerm,
-          statusFilter,
-          classFilter
-        );
-
         showToast("Lead status updated successfully!", "success");
       } else {
-        console.error("Failed to update status:", result.error);
-        showToast("Failed to update lead status. Please try again.", "error");
+        console.error("Failed to update status:", result);
+        showToast(
+          `Failed to update lead status: ${result.error}${
+            result.details ? ` - ${result.details}` : ""
+          }`,
+          "error"
+        );
       }
     } catch (error) {
       console.error("Error updating status:", error);
@@ -73,7 +71,6 @@ function HubSpotLeadsPage() {
       setUpdating(null);
     }
   };
-
   // Get available status options with fallback defaults
   const getStatusOptions = () => {
     const defaultStatuses = [
@@ -93,114 +90,199 @@ function HubSpotLeadsPage() {
     return allStatuses;
   };
 
-  // Fetch HubSpot leads from API
-  const fetchHubspotLeads = async (
-    page = 1,
-    search = "",
-    status = "",
-    classValue = ""
-  ) => {
+  // Memoized filter options for better performance
+  const statusOptions = useMemo(() => {
+    return [
+      ...new Set(allLeadsData.map((lead) => lead.status).filter(Boolean)),
+    ];
+  }, [allLeadsData]);
+
+  const classOptions = useMemo(() => {
+    return [
+      ...new Set(
+        allLeadsData
+          .map((lead) => lead.classInterested || lead.class)
+          .filter(Boolean)
+      ),
+    ];
+  }, [allLeadsData]); // Fetch all HubSpot leads from API (called once on initial load)
+  const fetchAllHubspotLeads = async () => {
     setTableLoading(true);
     try {
+      // Fetch with HubSpot's maximum allowed limit
       const params = new URLSearchParams({
-        page: page.toString(),
-        limit: pagination.limit.toString(),
-        ...(search && { search }),
-        ...(status && { status }),
-        ...(classValue && { class: classValue }),
+        page: "1",
+        limit: "200", // HubSpot's maximum limit per request
       });
 
       const response = await fetch(`/api/hubspot-leads?${params}`);
       const result = await response.json();
 
       if (result.success) {
-        setHubspotLeadsData(result.data);
-        setStats(result.stats);
-        setFilters(result.filters);
-        setPagination(result.pagination);
+        setAllLeadsData(result.data || []);
+        setStats(result.stats || {});
+        setFilters(result.filters || {});
+
+        // Initialize filtered data
+        setFilteredLeads(result.data || []);
       } else {
-        console.error("Failed to fetch HubSpot leads:", result.error);
+        showToast("Failed to load leads data", "error");
       }
     } catch (error) {
       console.error("Error fetching HubSpot leads:", error);
+      showToast("Error loading leads data", "error");
     } finally {
       setTableLoading(false);
     }
-  }; // Initial load
-  useEffect(() => {
-    fetchHubspotLeads(1, "", "", "");
-  }, []);
-  // Handle search and filter changes
-  useEffect(() => {
-    const debounceTimer = setTimeout(() => {
-      fetchHubspotLeads(1, searchTerm, statusFilter, classFilter);
-    }, 500);
+  };
+  // Frontend filtering function
+  const applyFilters = () => {
+    setFilteringActive(true);
 
-    return () => clearTimeout(debounceTimer);
-  }, [searchTerm, statusFilter, classFilter]); // Export to Excel
+    let filtered = [...allLeadsData];
+
+    // Apply search filter
+    if (searchTerm.trim()) {
+      const searchLower = searchTerm.toLowerCase().trim();
+      filtered = filtered.filter((lead) => {
+        return (
+          lead.studentName?.toLowerCase().includes(searchLower) ||
+          lead.fatherName?.toLowerCase().includes(searchLower) ||
+          lead.parentName?.toLowerCase().includes(searchLower) ||
+          lead.email?.toLowerCase().includes(searchLower) ||
+          lead.phone?.includes(searchTerm) ||
+          lead.school?.toLowerCase().includes(searchLower) ||
+          lead.location?.toLowerCase().includes(searchLower) ||
+          lead.address?.toLowerCase().includes(searchLower)
+        );
+      });
+    }
+
+    // Apply status filter
+    if (statusFilter) {
+      filtered = filtered.filter((lead) => lead.status === statusFilter);
+    }
+
+    // Apply class filter
+    if (classFilter) {
+      filtered = filtered.filter(
+        (lead) =>
+          lead.classInterested === classFilter || lead.class === classFilter
+      );
+    }
+
+    // Update filtered leads
+    setFilteredLeads(filtered);
+
+    // Update pagination
+    const totalFiltered = filtered.length;
+    const totalPages = Math.ceil(totalFiltered / pagination.limit);
+    setPagination((prev) => ({
+      ...prev,
+      total: totalFiltered,
+      totalPages,
+      page: 1, // Reset to first page when filters change
+    }));
+
+    // Update stats for filtered data
+    const statusStats = {};
+    filtered.forEach((lead) => {
+      statusStats[lead.status] = (statusStats[lead.status] || 0) + 1;
+    });
+
+    setStats({
+      total: totalFiltered,
+      ...statusStats,
+    });
+
+    // Brief delay to show filtering animation
+    setTimeout(() => setFilteringActive(false), 300);
+  }; // Initial load - fetch all data once
+  useEffect(() => {
+    fetchAllHubspotLeads();
+  }, []);
+
+  // Apply filters with debounce for search, immediate for dropdowns
+  useEffect(() => {
+    if (allLeadsData.length > 0) {
+      // Debounce search term changes
+      const debounceTimer = setTimeout(
+        () => {
+          applyFilters();
+        },
+        searchTerm ? 300 : 0
+      ); // 300ms delay for search, immediate for filters
+
+      return () => clearTimeout(debounceTimer);
+    }
+  }, [searchTerm, allLeadsData]);
+
+  // Immediate filtering for dropdown changes
+  useEffect(() => {
+    if (allLeadsData.length > 0) {
+      applyFilters();
+    }
+  }, [statusFilter, classFilter, allLeadsData]);
+
+  // Get paginated data for current page
+  const getPaginatedData = () => {
+    const startIndex = (pagination.page - 1) * pagination.limit;
+    const endIndex = startIndex + pagination.limit;
+    return filteredLeads.slice(startIndex, endIndex);
+  }; // Export to Excel using current filtered data
   const exportToExcel = async () => {
     setExportLoading(true);
     try {
-      // Fetch ALL filtered data for export (remove limit to get all matching records)
-      const params = new URLSearchParams({
-        limit: "1000", // Increase limit to get more records for export
-        page: "1", // Start from first page
-        ...(searchTerm && { search: searchTerm }),
-        ...(statusFilter && { status: statusFilter }),
-        ...(classFilter && { class: classFilter }),
-      });
-
-      const response = await fetch(`/api/hubspot-leads?${params}`);
-      const result = await response.json();
-
-      if (result.success && result.data.length > 0) {
-        const exportData = result.data.map((lead) => ({
-          "Lead ID": lead.id,
-          "Student Name": lead.studentName,
-          "Father Name": lead.fatherName || lead.parentName,
-          Email: lead.email,
-          Phone: lead.phone,
-          "Class Interested": lead.classInterested || lead.class,
-          School: lead.school,
-          Location: lead.location || lead.address,
-          Source: lead.source || "Website Form",
-          Status: lead.status,
-          "Lead Score": lead.leadScore,
-          "Date Created": new Date(lead.dateCreated).toLocaleDateString(),
-          Budget: lead.budget,
-          Timeline: lead.timeline,
-          "Additional Notes": lead.additionalNotes || lead.notes || "None",
-        }));
-
-        const ws = XLSX.utils.json_to_sheet(exportData);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "HubSpot Leads");
-
-        // Use writeFileXLSX with blob approach to avoid clipboard API issues
-        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-        const blob = new Blob([wbout], { type: "application/octet-stream" });
-        const fileName = `hubspot_leads_${
-          new Date().toISOString().split("T")[0]
-        }.xlsx`;
-
-        // Create download link
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(link.href);
-
-        alert(
-          `HubSpot leads exported successfully! ${exportData.length} records exported.`
-        );
-      } else {
-        alert("No data to export with current filters.");
+      if (filteredLeads.length === 0) {
+        showToast("No data to export with current filters.", "warning");
+        return;
       }
+
+      const exportData = filteredLeads.map((lead) => ({
+        "Lead ID": lead.id,
+        "Student Name": lead.studentName,
+        "Father Name": lead.fatherName || lead.parentName,
+        Email: lead.email,
+        Phone: lead.phone,
+        "Class Interested": lead.classInterested || lead.class,
+        School: lead.school,
+        Location: lead.location || lead.address,
+        Source: lead.source || "Website Form",
+        Status: lead.status,
+        "Lead Score": lead.leadScore,
+        "Date Created": new Date(lead.dateCreated).toLocaleDateString(),
+        Budget: lead.budget,
+        Timeline: lead.timeline,
+        "Additional Notes": lead.additionalNotes || lead.notes || "None",
+      }));
+
+      const ws = XLSX.utils.json_to_sheet(exportData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "HubSpot Leads");
+
+      // Use writeFileXLSX with blob approach to avoid clipboard API issues
+      const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const blob = new Blob([wbout], { type: "application/octet-stream" });
+      const fileName = `hubspot_leads_${
+        new Date().toISOString().split("T")[0]
+      }.xlsx`;
+
+      // Create download link
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+
+      showToast(
+        `HubSpot leads exported successfully! ${exportData.length} records exported.`,
+        "success"
+      );
     } catch (error) {
       console.error("Export error:", error);
-      alert("Failed to export leads");
+      showToast("Failed to export leads", "error");
     } finally {
       setExportLoading(false);
     }
@@ -243,8 +325,11 @@ function HubSpotLeadsPage() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+              {" "}
               <span className="text-purple-100 text-sm sm:text-base text-center">
-                Total Leads: {stats.total || 0}
+                {filteredLeads.length !== allLeadsData.length
+                  ? `Showing ${filteredLeads.length} of ${allLeadsData.length} leads`
+                  : `Total Leads: ${stats.total || 0}`}
               </span>
               <button
                 onClick={exportToExcel}
@@ -265,30 +350,38 @@ function HubSpotLeadsPage() {
       {/* Search and Filters */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between mb-6 overflow-hidden">
+          {" "}
           <div className="relative flex-1 max-w-full lg:max-w-md">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            {filteringActive && (
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-purple-500"></div>
+              </div>
+            )}
             <input
               type="text"
               placeholder="Search leads..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
+              className={`pl-10 ${
+                filteringActive ? "pr-10" : "pr-4"
+              } py-2 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base transition-all`}
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 overflow-hidden">
             <div className="relative w-full sm:w-auto">
+              {" "}
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
                 className="px-3 sm:px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 text-sm sm:text-base w-full sm:w-auto appearance-none"
               >
                 <option value="">All Status</option>
-                {filters.statuses &&
-                  filters.statuses.map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
+                {statusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="relative w-full sm:w-auto">
@@ -297,15 +390,38 @@ function HubSpotLeadsPage() {
                 onChange={(e) => setClassFilter(e.target.value)}
                 className="px-3 sm:px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 text-sm sm:text-base w-full sm:w-auto appearance-none"
               >
+                {" "}
                 <option value="">All Classes</option>
-                {filters.classes &&
-                  filters.classes.map((classVal) => (
-                    <option key={classVal} value={classVal}>
-                      {classVal}
-                    </option>
-                  ))}
+                {classOptions.map((classVal) => (
+                  <option key={classVal} value={classVal}>
+                    {classVal}
+                  </option>
+                ))}
               </select>
-            </div>
+            </div>{" "}
+            <button
+              onClick={() => {
+                setSearchTerm("");
+                setStatusFilter("");
+                setClassFilter("");
+              }}
+              disabled={!searchTerm && !statusFilter && !classFilter}
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base transition-colors"
+            >
+              Clear Filters
+            </button>
+            <button
+              onClick={fetchAllHubspotLeads}
+              disabled={tableLoading}
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base transition-colors"
+            >
+              {tableLoading ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              ) : (
+                <ArrowPathIcon className="h-4 w-4" />
+              )}
+              <span>{tableLoading ? "Loading..." : "Refresh"}</span>
+            </button>
           </div>
         </div>
         {/* Stats Cards */}
@@ -430,8 +546,8 @@ function HubSpotLeadsPage() {
                       </div>
                     </td>
                   </tr>
-                ) : hubspotLeadsData && hubspotLeadsData.length > 0 ? (
-                  hubspotLeadsData.map((lead) => (
+                ) : getPaginatedData() && getPaginatedData().length > 0 ? (
+                  getPaginatedData().map((lead) => (
                     <tr key={lead.id} className="hover:bg-gray-50">
                       <td className="px-2 sm:px-3 py-4">
                         <div className="text-xs sm:text-sm font-medium text-gray-900 break-words">
@@ -600,23 +716,18 @@ function HubSpotLeadsPage() {
               </tbody>
             </table>
           </div>
-          {/* Pagination */}
+          {/* Pagination */}{" "}
           {pagination.totalPages > 1 && (
             <div className="px-3 sm:px-6 py-3 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="text-xs sm:text-sm text-gray-700 text-center sm:text-left">
-                Showing {(pagination.page - 1) * pagination.limit + 1} to
-                {Math.min(pagination.page * pagination.limit, pagination.total)}
+                Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
+                {Math.min(pagination.page * pagination.limit, pagination.total)}{" "}
                 of {pagination.total} results
               </div>
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() =>
-                    fetchHubspotLeads(
-                      pagination.page - 1,
-                      searchTerm,
-                      statusFilter,
-                      classFilter
-                    )
+                    setPagination((prev) => ({ ...prev, page: prev.page - 1 }))
                   }
                   disabled={pagination.page <= 1}
                   className="px-2 sm:px-3 py-1 text-xs sm:text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
@@ -628,12 +739,7 @@ function HubSpotLeadsPage() {
                 </span>
                 <button
                   onClick={() =>
-                    fetchHubspotLeads(
-                      pagination.page + 1,
-                      searchTerm,
-                      statusFilter,
-                      classFilter
-                    )
+                    setPagination((prev) => ({ ...prev, page: prev.page + 1 }))
                   }
                   disabled={pagination.page >= pagination.totalPages}
                   className="px-2 sm:px-3 py-1 text-xs sm:text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"

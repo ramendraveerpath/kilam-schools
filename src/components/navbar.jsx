@@ -48,15 +48,6 @@ const leadsItems = [
   },
 ];
 
-const callsToAction = [
-  { name: "Enroll Now", href: "/form", icon: DocumentTextIcon },
-  { name: "Call Us", href: "tel:+91-9897841033", icon: PhoneIcon },
-  {
-    name: "View Success Stories",
-    href: "/#testimonials",
-    icon: AcademicCapIcon,
-  },
-];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
