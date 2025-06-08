@@ -177,15 +177,14 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </nav>
-      {/* Mobile menu */}
+      </nav>      {/* Mobile menu */}
       <Dialog
         className="lg:hidden"
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
         <div className="fixed inset-0 z-50" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-700">
+        <DialogPanel className="fixed top-0 right-0 z-50 w-full bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-700 max-h-fit">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center -m-1.5 p-1.5">
               <span className="sr-only">VEERPATH DEFENCE ACADEMY</span>
