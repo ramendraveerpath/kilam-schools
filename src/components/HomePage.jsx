@@ -176,9 +176,9 @@ export default function HomePage() {
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+          <dl className="grid max-w-xl grid-cols-1 gap-4 md:gap-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
-              <div key={feature.name} className="relative pl-16">
+              <div key={feature.name} className="relative pl-16 ">
                 <dt className="text-base font-semibold leading-7 text-gray-900">
                   <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                     <feature.icon
@@ -261,7 +261,7 @@ export default function HomePage() {
               Campus Life
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Experience the Academy Environment
+              Experience the Environment
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Get a glimpse of the disciplined and inspiring environment that
@@ -271,13 +271,13 @@ export default function HomePage() {
           <div className="mx-auto mt-16 grid max-w-2xl grid-cols-2 gap-4 md:gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="relative overflow-hidden rounded-2xl bg-gray-900">
               <Image
-                src="/images/2.jpg"
+                src="/images/Sainik-School.jpg"
                 alt="Academy Training Session"
                 width={600}
                 height={400}
                 className="h-full w-full object-contain opacity-75 bg-gray-50"
               />
-              <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+              {/* <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
               <div className="absolute inset-0 md:flex items-end p-8 hidden">
                 <div>
                   <h3 className="text-xl font-semibold text-white">
@@ -288,17 +288,17 @@ export default function HomePage() {
                     preparation
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>{" "}
             <div className="relative overflow-hidden rounded-2xl bg-gray-900">
               <Image
-                src="/images/3.jpg"
+                src="/images/img-sqr.jpg"
                 alt="Student Achievement Ceremony"
                 width={600}
                 height={400}
                 className="h-full w-full object-contain opacity-75 bg-gray-50"
               />
-              <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+              {/* <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
               <div className="absolute inset-0 hidden md:flex items-end p-8">
                 <div>
                   <h3 className="text-xl font-semibold text-white">
@@ -308,7 +308,7 @@ export default function HomePage() {
                     Celebrating student success and milestones
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -390,7 +390,7 @@ export default function HomePage() {
       </div>
 
       {/* Director's Message Section */}
-      <div className="relative bg-white py-12 sm:py-24">
+      <div className="relative bg-white py-12 md:py-24 md:pb-36">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center mb-16">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -401,16 +401,16 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
+          <div className="mx-auto max-w-7xl w-full lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             {/* Director's Image */}
             <div className="relative mb-8 lg:mb-0">
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 <Image
-                  src="/images/4.jpg"
+                  src="/images/dummy-director.jpg"
                   alt="Krishan Saini - Director, VDA"
-                  width={400}
-                  height={500}
-                  className="w-full rounded-2xl object-cover shadow-xl ring-1 ring-gray-400/10"
+                  width={300}
+                  height={400}
+                  className="w-full rounded-2xl object-cover shadow-xl ring-1 ring-gray-400/10 hover:scale-105 transition-all duration-300 ease-in-out"
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
                   <h3 className="text-lg font-semibold text-gray-900">
