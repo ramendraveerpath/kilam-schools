@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Veerpath Defence Academy",
   description: "Premier Coaching for Navodaya & Sainik School Entrance Exams",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({ children }) {

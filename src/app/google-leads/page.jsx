@@ -150,178 +150,183 @@ export default function GoogleLeadsPage() {
     if (score >= 70) return "text-yellow-600 font-semibold";
     return "text-red-600 font-semibold";
   };
-
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-screen overflow-x-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600  pt-20">
-        {/* Added pt-24 for fixed navbar */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 pt-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div className="text-center lg:text-left">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
                 Google Ads Leads
               </h1>
-              <p className="mt-2 text-blue-100">
+              <p className="mt-2 text-sm sm:text-base text-blue-100">
                 Manage and track leads from Google Ads campaigns
               </p>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-blue-100">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+              <span className="text-blue-100 text-sm sm:text-base text-center">
                 Total Leads: {stats.total || 0}
-              </span>{" "}
+              </span>
               <button
                 onClick={exportToExcel}
                 disabled={exportLoading}
-                className="flex items-center space-x-2 bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center justify-center space-x-2 bg-white text-blue-600 px-3 sm:px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto text-sm sm:text-base"
               >
                 {exportLoading ? (
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-blue-600"></div>
                 ) : (
-                  <ArrowDownTrayIcon className="h-5 w-5" />
+                  <ArrowDownTrayIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                 )}
                 <span>{exportLoading ? "Exporting..." : "Export Excel"}</span>
               </button>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Search and Filters */}
-      <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
-        <div className="flex  flex-col sm:flex-row gap-3 items-center justify-between mb-6 px-2">
-          <div className="relative flex-1 max-w-md">
+      </div>{" "}
+      {/* Search and Filters */}{" "}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between mb-6 overflow-hidden">
+          <div className="relative flex-1 max-w-full lg:max-w-md">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
               type="text"
               placeholder="Search leads..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="pl-10 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
-
-          <div className="flex items-center space-x-4">
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">All Status</option>
-              {filters.statuses.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
-            <select
-              value={campaignFilter}
-              onChange={(e) => setCampaignFilter(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">All Campaigns</option>
-              {filters.campaigns.map((campaign) => (
-                <option key={campaign} value={campaign}>
-                  {campaign}
-                </option>
-              ))}
-            </select>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 overflow-hidden">
+            <div className="relative w-full sm:w-auto">
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="px-3 sm:px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 text-sm sm:text-base w-full sm:w-auto appearance-none"
+              >
+                <option value="">All Status</option>
+                {filters.statuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="relative w-full sm:w-auto">
+              <select
+                value={campaignFilter}
+                onChange={(e) => setCampaignFilter(e.target.value)}
+                className="px-3 sm:px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 text-sm sm:text-base w-full sm:w-auto appearance-none"
+              >
+                <option value="">All Campaigns</option>
+                {filters.campaigns.map((campaign) => (
+                  <option key={campaign} value={campaign}>
+                    {campaign}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
-
+        </div>{" "}
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center">
               <div className="p-2 bg-blue-100 rounded-lg">
-                <EyeIcon className="h-6 w-6 text-blue-600" />
+                <EyeIcon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Leads</p>
-                <p className="text-2xl font-semibold text-gray-900">
+              <div className="ml-3 sm:ml-4">
+                <p className="text-xs sm:text-sm font-medium text-gray-600">
+                  Total Leads
+                </p>
+                <p className="text-lg sm:text-2xl font-semibold text-gray-900">
                   {stats.total || 0}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center">
               <div className="p-2 bg-green-100 rounded-lg">
-                <PhoneIcon className="h-6 w-6 text-green-600" />
+                <PhoneIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Contacted</p>
-                <p className="text-2xl font-semibold text-gray-900">
+              <div className="ml-3 sm:ml-4">
+                <p className="text-xs sm:text-sm font-medium text-gray-600">
+                  Contacted
+                </p>
+                <p className="text-lg sm:text-2xl font-semibold text-gray-900">
                   {stats.contacted || 0}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center">
               <div className="p-2 bg-purple-100 rounded-lg">
-                <EnvelopeIcon className="h-6 w-6 text-purple-600" />
+                <EnvelopeIcon className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Qualified</p>
-                <p className="text-2xl font-semibold text-gray-900">
+              <div className="ml-3 sm:ml-4">
+                <p className="text-xs sm:text-sm font-medium text-gray-600">
+                  Qualified
+                </p>
+                <p className="text-lg sm:text-2xl font-semibold text-gray-900">
                   {stats.qualified || 0}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center">
               <div className="p-2 bg-yellow-100 rounded-lg">
-                <ArrowDownTrayIcon className="h-6 w-6 text-yellow-600" />
+                <ArrowDownTrayIcon className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-600" />
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Avg Cost</p>
-                <p className="text-2xl font-semibold text-gray-900">
+              <div className="ml-3 sm:ml-4">
+                <p className="text-xs sm:text-sm font-medium text-gray-600">
+                  Avg Cost
+                </p>
+                <p className="text-lg sm:text-2xl font-semibold text-gray-900">
                   ₹{stats.avgCost || 0}
                 </p>
               </div>
             </div>
           </div>
-        </div>
-
+        </div>{" "}
         {/* Data Table */}
         <div className="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
-            {" "}
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Student Details
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Contact Info
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
                     Academic Info
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
                     Campaign Details
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
                     Score & Cost
                   </th>
                 </tr>
-              </thead>
+              </thead>{" "}
               <tbody className="bg-white divide-y divide-gray-200">
                 {tableLoading ? (
                   <tr>
-                    <td colSpan="6" className="px-6 py-12 text-center">
+                    <td colSpan="6" className="px-3 sm:px-6 py-12 text-center">
                       <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                        <span className="ml-3 text-gray-500">
+                        <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-blue-600"></div>
+                        <span className="ml-3 text-gray-500 text-sm sm:text-base">
                           Loading leads...
                         </span>
                       </div>
@@ -331,7 +336,7 @@ export default function GoogleLeadsPage() {
                   <tr>
                     <td
                       colSpan="6"
-                      className="px-6 py-12 text-center text-gray-500"
+                      className="px-3 sm:px-6 py-12 text-center text-gray-500 text-sm sm:text-base"
                     >
                       No leads found matching your criteria.
                     </td>
@@ -339,59 +344,59 @@ export default function GoogleLeadsPage() {
                 ) : (
                   googleLeadsData.map((lead) => (
                     <tr key={lead.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4">
                         <div>
-                          <div className="text-sm font-medium text-gray-900">
+                          <div className="text-xs sm:text-sm font-medium text-gray-900 break-words">
                             {lead.name}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs text-gray-500">
                             ID: {lead.id}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs text-gray-500 break-words">
                             {lead.location}
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4">
                         <div>
-                          <div className="text-sm text-gray-900">
+                          <div className="text-xs sm:text-sm text-gray-900 break-words">
                             {lead.email}
-                          </div>
-                          <div className="text-sm text-gray-500">
+                          </div>{" "}
+                          <div className="text-xs text-gray-500">
                             {lead.phone}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs text-gray-500 break-words">
                             Father: {lead.fatherName}
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 hidden lg:table-cell">
                         <div>
-                          <div className="text-sm text-gray-900">
+                          <div className="text-xs sm:text-sm text-gray-900">
                             Class: {lead.class}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs text-gray-500 break-words">
                             {lead.school}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs text-gray-500 break-words">
                             Interests: {lead.interests?.join(", ") || "N/A"}
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 hidden md:table-cell">
                         <div>
-                          <div className="text-sm text-gray-900">
+                          <div className="text-xs sm:text-sm text-gray-900 break-words">
                             {lead.campaign}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs text-gray-500 break-words">
                             {lead.adGroup}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs text-gray-500 break-words">
                             {lead.keyword}
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4">
                         <span
                           className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(
                             lead.status
@@ -402,11 +407,17 @@ export default function GoogleLeadsPage() {
                         <div className="text-xs text-gray-500 mt-1">
                           {new Date(lead.dateCreated).toLocaleDateString()}
                         </div>
+                        {/* Show academic info on mobile */}
+                        <div className="lg:hidden mt-2">
+                          <div className="text-xs text-gray-700">
+                            Class: {lead.class}
+                          </div>
+                        </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 hidden sm:table-cell">
                         <div>
                           <span
-                            className={`text-sm font-medium ${getScoreColor(
+                            className={`text-xs sm:text-sm font-medium ${getScoreColor(
                               lead.leadScore
                             )}`}
                           >
@@ -422,18 +433,16 @@ export default function GoogleLeadsPage() {
                 )}
               </tbody>
             </table>
-          </div>
-
+          </div>{" "}
           {/* Pagination */}
           {pagination.totalPages > 1 && (
-            <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
-              <div className="text-sm text-gray-700">
+            <div className="px-3 sm:px-6 py-3 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="text-xs sm:text-sm text-gray-700 text-center sm:text-left">
                 Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
                 {Math.min(pagination.page * pagination.limit, pagination.total)}{" "}
                 of {pagination.total} results
               </div>
-              <div className="flex space-x-2">
-                {" "}
+              <div className="flex items-center space-x-2">
                 <button
                   onClick={() =>
                     fetchGoogleLeads(
@@ -444,13 +453,13 @@ export default function GoogleLeadsPage() {
                     )
                   }
                   disabled={pagination.page <= 1}
-                  className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+                  className="px-2 sm:px-3 py-1 text-xs sm:text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
                 >
                   Previous
                 </button>
-                <span className="px-3 py-1 text-sm">
+                <span className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
                   Page {pagination.page} of {pagination.totalPages}
-                </span>{" "}
+                </span>
                 <button
                   onClick={() =>
                     fetchGoogleLeads(
@@ -461,7 +470,7 @@ export default function GoogleLeadsPage() {
                     )
                   }
                   disabled={pagination.page >= pagination.totalPages}
-                  className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+                  className="px-2 sm:px-3 py-1 text-xs sm:text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
                 >
                   Next
                 </button>

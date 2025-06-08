@@ -16,11 +16,7 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
-import {
-  TrophyIcon,
-  ChartBarIcon,
-  UserGroupIcon,
-} from "@heroicons/react/24/outline";
+import { ChartBarIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 // Main navigation items
@@ -70,7 +66,13 @@ export default function Navbar() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center -m-1.5 px-1.5">
             <span className="sr-only">VEERPATH DEFENCE ACADEMY</span>
-            <Image src='/images/logo.png' alt='logo' width={100} height={70} className="h-12 w-auto" />  
+            <Image
+              src="/images/logo.png"
+              alt="logo"
+              width={100}
+              height={70}
+              className="h-8 md:h-12 w-auto"
+            />
             <span className="ml-2 text-xl font-bold text-white hidden md:block">
               VEERPATH DEFENCE ACADEMY
             </span>
@@ -98,11 +100,10 @@ export default function Navbar() {
                   className="h-5 w-5 flex-none text-gray-400"
                   aria-hidden="true"
                 />
-              </PopoverButton>
-
+              </PopoverButton>{" "}
               <PopoverPanel
                 transition
-                className="absolute -left-8 top-full z-10 mt-3 w-80 overflow-hidden rounded-lg bg-gray-800 shadow-lg ring-1 ring-gray-70 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[enter]:ease-out data-[leave]:duration-150 data-[leave]:ease-in"
+                className="absolute left-0 right-0 sm:-left-8 sm:right-auto top-full z-10 mt-3 w-80 max-w-sm sm:max-w-none mx-auto sm:mx-0 overflow-hidden rounded-lg bg-gray-800 shadow-lg ring-1 ring-gray-70 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[enter]:ease-out data-[leave]:duration-150 data-[leave]:ease-in"
               >
                 <div className="p-4 cursor-pointer">
                   {" "}
@@ -164,7 +165,13 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center -m-1.5 p-1.5">
               <span className="sr-only">VEERPATH DEFENCE ACADEMY</span>
-               <Image src='/images/logo.png' alt='logo' width={100} height={70} className="h-8 w-auto" /> 
+              <Image
+                src="/images/logo.png"
+                alt="logo"
+                width={100}
+                height={70}
+                className="h-8 w-auto"
+              />
               {/* <span className="ml-2 text-xl font-bold text-white">
                 VEERPATH DEFENCE ACADEMY
               </span> */}
