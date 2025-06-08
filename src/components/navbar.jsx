@@ -177,7 +177,8 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </nav>      {/* Mobile menu */}
+      </nav>{" "}
+      {/* Mobile menu */}
       <Dialog
         className="lg:hidden"
         open={mobileMenuOpen}
