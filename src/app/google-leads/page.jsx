@@ -72,6 +72,7 @@ export default function GoogleLeadsPage() {
     }, 500);
     return () => clearTimeout(debounceTimer);
   }, [searchTerm, statusFilter, campaignFilter]);
+
   // Export to Excel
   const exportToExcel = async () => {
     setExportLoading(true);
@@ -127,6 +128,7 @@ export default function GoogleLeadsPage() {
       setExportLoading(false);
     }
   };
+
   const getStatusColor = (status) => {
     switch (status) {
       case "New":
@@ -141,6 +143,7 @@ export default function GoogleLeadsPage() {
         return "bg-gray-100 text-gray-800";
     }
   };
+
   const getScoreColor = (score) => {
     if (score >= 90) return "text-green-600 font-semibold";
     if (score >= 80) return "text-blue-600 font-semibold";
@@ -186,7 +189,7 @@ export default function GoogleLeadsPage() {
 
       {/* Search and Filters */}
       <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex  flex-col sm:flex-row gap-3 items-center justify-between mb-6 px-2">
           <div className="relative flex-1 max-w-md">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input

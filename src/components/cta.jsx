@@ -42,9 +42,8 @@ export default function CTA() {
             <Image
               src="/images/3.jpg"
               alt="Success at VEERPATH DEFENCE ACADEMY"
-              width={400}
-              height={300}
-              className="aspect-[4/3] w-full rounded-2xl bg-gray-50 object-cover shadow-2xl lg:aspect-auto lg:h-64"
+              fill
+              className=" rounded-2xl"
             />
             <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
           </div>{" "}

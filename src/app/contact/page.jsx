@@ -137,7 +137,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-white pt-24">
+    <div className="bg-white pt-20">
       {/* Hero Section with Image */}
       <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -189,13 +189,12 @@ export default function ContactPage() {
             <div className="relative lg:order-last">
               <Image
                 src="/images/3.jpg"
-                alt="VEERPATH DEFENCE ACADEMY Students"
-                width={500}
-                height={400}
-                className="aspect-[3/2] w-full rounded-2xl bg-gray-50 object-cover lg:aspect-auto lg:h-[34.5rem] shadow-xl"
+                alt="Success at VEERPATH DEFENCE ACADEMY"
+                fill
+                className=" rounded-2xl"
               />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-            </div>
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
+            </div>{" "}
           </div>
         </div>
       </div>{" "}
@@ -321,27 +320,22 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="relative lg:order-last">
-              <div className="mx-auto w-full max-w-lg">
-                <div className="relative">
-                  <Image
-                    src="/images/3.jpg"
-                    alt="Students studying at VEERPATH DEFENCE ACADEMY"
-                    width={400}
-                    height={300}
-                    className="aspect-[4/3] w-full rounded-2xl bg-gray-50 object-cover shadow-2xl"
-                  />
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4">
-                    <p className="text-sm font-semibold text-gray-900">
-                      Join 1000+ successful students
-                    </p>
-                    <p className="text-xs text-gray-600">
-                      JNVST • AISSEE • RMS Success Stories
-                    </p>
-                  </div>
-                </div>
+              <Image
+                src="/images/3.jpg"
+                alt="Success at VEERPATH DEFENCE ACADEMY"
+                fill
+                className=" rounded-2xl"
+              />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
+              <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4">
+                <p className="text-sm font-semibold text-gray-900">
+                  Join 1000+ successful students
+                </p>
+                <p className="text-xs text-gray-600">
+                  JNVST • AISSEE • RMS Success Stories
+                </p>
               </div>
-            </div>
+            </div>{" "}
           </div>
         </div>
       </div>{" "}
@@ -362,15 +356,15 @@ export default function ContactPage() {
         <div className="mx-auto mt-16 max-w-5xl">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Campus Image */}
-            <div className="relative">
+            <div className="relative lg:order-last">
               <Image
                 src="/images/3.jpg"
-                alt="VEERPATH DEFENCE ACADEMY Campus"
-                width={600}
-                height={400}
-                className="aspect-[3/2] w-full rounded-2xl bg-gray-50 object-cover shadow-xl"
+                alt="Success at VEERPATH DEFENCE ACADEMY"
+                fill
+                className=" rounded-2xl"
               />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
+
               <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-gray-900">
                   VEERPATH DEFENCE ACADEMY
@@ -379,8 +373,7 @@ export default function ContactPage() {
                   Modern facilities for comprehensive learning
                 </p>
               </div>
-            </div>
-
+            </div>{" "}
             {/* Location Details */}
             <div className="flex flex-col justify-center">
               <div className="space-y-6">

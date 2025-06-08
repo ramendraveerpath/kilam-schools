@@ -182,7 +182,7 @@ export default function HubSpotLeadsPage() {
 
       {/* Search and Filters */}
       <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex  flex-col sm:flex-row gap-3 items-center justify-between mb-6 px-2">
           <div className="relative flex-1 max-w-md">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
