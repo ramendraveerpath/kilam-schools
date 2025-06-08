@@ -16,9 +16,9 @@ import Image from "next/image";
 import CTA from "./cta";
 
 const stats = [
-  { name: "Successful Selections", value: "1000+", icon: AcademicCapIcon },
-  { name: "Years of Experience", value: "15+", icon: TrophyIcon },
-  { name: "Expert Faculty", value: "25+", icon: UserGroupIcon },
+  { name: "Successful Selections", value: "100+", icon: AcademicCapIcon },
+  { name: "Years of Experience", value: "10+", icon: TrophyIcon },
+  { name: "Expert Faculty", value: "5+", icon: UserGroupIcon },
   { name: "Target Exams", value: "3", icon: ChartBarIcon },
 ];
 
