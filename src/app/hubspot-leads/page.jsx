@@ -11,8 +11,9 @@ import {
 } from "@heroicons/react/24/outline";
 import * as XLSX from "xlsx";
 import { useToast } from "../../components/Toast";
+import ProtectedRoute from "../../components/ProtectedRoute";
 
-export default function HubSpotLeadsPage() {
+function HubSpotLeadsPage() {
   const { showToast, ToastContainer } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
@@ -641,10 +642,18 @@ export default function HubSpotLeadsPage() {
                 </button>
               </div>
             </div>
-          )}
+          )}{" "}
         </div>
       </div>
       <ToastContainer />
     </div>
+  );
+}
+
+export default function ProtectedHubSpotLeadsPage() {
+  return (
+    <ProtectedRoute>
+      <HubSpotLeadsPage />
+    </ProtectedRoute>
   );
 }

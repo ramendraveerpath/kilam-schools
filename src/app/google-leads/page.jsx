@@ -9,8 +9,9 @@ import {
 } from "@heroicons/react/24/outline";
 import * as XLSX from "xlsx";
 import { useToast } from "../../components/Toast";
+import ProtectedRoute from "../../components/ProtectedRoute";
 
-export default function GoogleLeadsPage() {
+function GoogleLeadsPage() {
   const { showToast, ToastContainer } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
@@ -632,5 +633,13 @@ export default function GoogleLeadsPage() {
       </div>
       <ToastContainer />
     </div>
+  );
+}
+
+export default function ProtectedGoogleLeadsPage() {
+  return (
+    <ProtectedRoute>
+      <GoogleLeadsPage />
+    </ProtectedRoute>
   );
 }

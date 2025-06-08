@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SharedLayout from "@/components/SharedLayout";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { AuthProvider } from "@/contexts/AuthContext";
+import ConditionalLayout from "@/components/ConditionalLayout";
+import PropTypes from "prop-types";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +31,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
-        <SharedLayout>{children}</SharedLayout>
+        <AuthProvider>
+          <ConditionalLayout>{children}</ConditionalLayout>
+        </AuthProvider>
       </body>
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
