@@ -11,10 +11,10 @@ export default function CTA() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-1 relative overflow-visible">
           <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl text-center sm:text-left font-bold tracking-tight text-white sm:text-4xl">
               Build Your Child's Future with the Right Guidance
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="mt-6 text-center sm:text-left text-lg leading-8 text-gray-300">
               Join VEERPATH DEFENCE ACADEMY - Where Success Begins! Transform
               your child's dreams into reality with our expert guidance and
               proven methodology.
@@ -33,17 +33,17 @@ export default function CTA() {
                 📞 Call: +91-9897841033 <span aria-hidden="true">→</span>
               </a>
             </div>
-            <div className="mt-8 flex items-center text-gray-300">
+            <div className="mt-8 flex justify-center items-center sm:justify-start text-gray-300 text-center sm:text-left mx-auto">
               <CheckCircleIcon className="h-5 w-5 mr-2 text-green-400" />
-              <span className="text-sm">Over 1000+ successful admissions</span>
+              <span className="text-sm">1000+ successful admissions</span>
             </div>
           </div>
-          <div className="relative lg:absolute lg:order-last lg:right-0 lg:top-0 lg:w-1/3 lg:h-full lg:-translate-y-1/2">
+          <div className="relative hidden sm:block lg:absolute lg:order-last lg:right-0 lg:top-0 lg:w-1/3 lg:h-full lg:-translate-y-1/2">
             <div className="relative h-full w-full">
               <Image
                 src="/images/3.jpg"
                 alt="Success at VEERPATH DEFENCE ACADEMY"
-                width={375}
+                width={383}
                 height={200}
                 className="rounded-2xl object-contain"
               />

@@ -78,10 +78,10 @@ export default function HomePage() {
         <div
           aria-hidden="true"
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
-        />
+        />{" "}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16">
-            <div className="lg:pr-8 max-w-lg lg:max-w-xl pt-20 md:pt-24">
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-3 lg:gap-x-12">
+            <div className="lg:col-span-2 lg:pr-8 pt-20 md:pt-24">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 Premier Coaching for{" "}
                 <span className="text-indigo-600">
@@ -113,22 +113,24 @@ export default function HomePage() {
                 </a>
               </div>
             </div>{" "}
-            <div className="mt-10 lg:mt-0 flex justify-center lg:justify-end">
-              <Image
-                width={500}
-                height={400}
-                alt="Sainik School Students"
-                src="/images/1.jpg"
-                className="w-full rounded-2xl object-contain shadow-lg bg-gray-50 lg:aspect-auto"
-                priority
-              />
+            <div className="mt-12 lg:mt-0 lg:col-span-1 flex items-center justify-center">
+              <div className="relative w-full max-w-lg lg:max-w-none">
+                <Image
+                  width={700}
+                  height={600}
+                  alt="Sainik School Students"
+                  src="/images/1.jpg"
+                  className="w-full h-auto max-h-[700px] rounded-2xl object-contain shadow-lg bg-gray-50 hover:shadow-xl transition-all duration-300 ease-in-out"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
         <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
       </div>
       {/* Stats Section */}
-      <div className="mx-auto py-12 max-w-7xl px-6 sm:py-24 lg:px-8">
+      <div className="mx-auto py-12 max-w-7xl px-6 sm:py-24 lg:px-8 overflow-hidden">
         <div className="mx-auto flex flex-col ax-w-2xl lg:mx-0 items-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Proven Track Record of Success
@@ -139,7 +141,7 @@ export default function HomePage() {
             dreams.
           </p>
         </div>
-        <div className="mx-auto mt-16 grid grid-col-2 md:flex max-w-md flex-col gap-8 lg:mx-0 lg:mt-20 lg:max-w-none lg:flex-row lg:items-end">
+        <div className="mx-auto mt-16 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:fle max-w-md flex-co gap-8 lg:mx-0 lg:mt-20 lg:max-w-none lg:flex-ro lg:items-end">
           {stats.map((stat) => (
             <div
               key={stat.name}
@@ -268,7 +270,7 @@ export default function HomePage() {
               shapes future leaders
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-2 gap-4 md:gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-4 md:gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="relative overflow-hidden rounded-2xl bg-gray-900">
               <Image
                 src="/images/Sainik-School.jpg"

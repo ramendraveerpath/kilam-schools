@@ -148,58 +148,62 @@ export default function ContactPage() {
                 "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
             }}
           />
-        </div>
+        </div>{" "}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16">
-            <div className="lg:pr-8 max-w-lg lg:max-w-xl pt-20 md:pt-24">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                Contact <span className="text-indigo-600">Us</span>
-              </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                Get in touch with VEERPATH DEFENCE ACADEMY. We're here to help
-                you start your journey towards excellence in Navodaya, Sainik
-                Schools, and RMS.
-              </p>
-              <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-100">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  📞 Quick Connect
-                </h3>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <p>✅ Instant Response Guaranteed</p>
-                  <p>✅ Free Consultation Available</p>
-                  <p>✅ Expert Guidance on Call</p>
+          <div className="mx-auto grid max-w-3xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3 lg:gap-x-12">
+            <div className="lg:col-span-2 pt-16 md:pt-20 lg:pt-24 lg:pr-8">
+              <div className="max-w-2xl">
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+                  Contact <span className="text-indigo-600">Us</span>
+                </h1>
+                <p className="mt-6 text-xl leading-8 text-gray-600">
+                  Get in touch with VEERPATH DEFENCE ACADEMY. We're here to help
+                  you start your journey towards excellence in Navodaya, Sainik
+                  Schools, and RMS.
+                </p>
+                <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    📞 Quick Connect
+                  </h3>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <p>✅ Instant Response Guaranteed</p>
+                    <p>✅ Free Consultation Available</p>
+                    <p>✅ Expert Guidance on Call</p>
+                  </div>
+                </div>
+                <div className="mt-10 flex items-center gap-x-6">
+                  <Link
+                    href="/form"
+                    className="rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200"
+                  >
+                    Enroll Now
+                  </Link>
+                  <a
+                    href="tel:+91-9897841033"
+                    className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200"
+                  >
+                    Call Us <span aria-hidden="true">→</span>
+                  </a>
                 </div>
               </div>
-              <div className="mt-10 flex items-center gap-x-6">
-                <Link
-                  href="/form"
-                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Enroll Now
-                </Link>
-                <a
-                  href="tel:+91-9897841033"
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Call Us <span aria-hidden="true">→</span>
-                </a>
-              </div>
             </div>
-            <div className="relative mt-10 lg:mt-0 flex justify-center lg:justify-end">
-              <Image
-               width={500}
-                height={400}
-                src="/images/3.jpg"
-                alt="Success at VEERPATH DEFENCE ACADEMY"
-                className="w-full rounded-2xl object-contain shadow-lg bg-gray-50 lg:aspect-auto"
-              />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
+            <div className="relative lg:col-span-1 flex justify-center lg:justify-end">
+              <div className="max-w-lg w-full">
+                <Image
+                  width={700}
+                  height={600}
+                  src="/images/3.jpg"
+                  alt="Success at VEERPATH DEFENCE ACADEMY"
+                  className="w-full max-h-[700px] rounded-2xl object-contain shadow-lg bg-gray-50 lg:aspect-auto hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
+              </div>
             </div>{" "}
           </div>
         </div>
       </div>{" "}
       {/* Contact Information Section */}
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Get in Touch
@@ -245,7 +249,7 @@ export default function ContactPage() {
         </div>
       </div>
       {/* Why Contact Us Section */}
-      <div className="bg-gray-50 py-24 sm:py-32">
+      <div className="bg-gray-50 py-12 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -280,67 +284,9 @@ export default function ContactPage() {
             </dl>
           </div>
         </div>
-      </div>{" "}
-      {/* Quick Enrollment Section */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 py-24 sm:py-32">
-        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-white to-purple-200 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-            <div className="max-w-xl lg:max-w-lg">
-              <h2 className="text-base font-semibold leading-7 text-indigo-200">
-                📢 Limited Seats Available
-              </h2>
-              <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Ready to Start Your Journey?
-              </p>
-              <p className="mt-6 text-lg leading-8 text-indigo-200">
-                Don't wait! Take action now and secure your child's future with
-                the right guidance. Join VEERPATH DEFENCE ACADEMY - Where
-                Success Begins!
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/form"
-                  className="rounded-md bg-white px-6 py-3 text-base font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-colors duration-200"
-                >
-                  Enroll Now - Get Started
-                </Link>
-                <a
-                  href="tel:+91-9897841033"
-                  className="rounded-md bg-green-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 transition-colors duration-200"
-                >
-                  📞 Call Now: +91-9897841033
-                </a>
-              </div>
-              <div className="mt-8 flex items-center text-indigo-200">
-                <CheckCircleIcon className="h-5 w-5 mr-2" />
-                <span className="text-sm">Free consultation available</span>
-              </div>
-            </div>
-            <div className="relative lg:order-last">
-              <Image
-                src="/images/3.jpg"
-                alt="Success at VEERPATH DEFENCE ACADEMY"
-                fill
-                className=" rounded-2xl"
-              />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
-              <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4">
-                <p className="text-sm font-semibold text-gray-900">
-                  Join 1000+ successful students
-                </p>
-                <p className="text-xs text-gray-600">
-                  JNVST • AISSEE • RMS Success Stories
-                </p>
-              </div>
-            </div>{" "}
-          </div>
-        </div>
-      </div>{" "}
+      </div>
       {/* Location Section */}
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-12 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
             📍 Our Location
@@ -352,94 +298,121 @@ export default function ContactPage() {
             Located in the heart of Bulandshahr, our campus is easily accessible
             and provides an ideal learning environment for aspiring students.
           </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-5xl">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {/* Campus Image */}
-            <div className="relative lg:order-last">
-              <Image
-                src="/images/3.jpg"
-                alt="Success at VEERPATH DEFENCE ACADEMY"
-                fill
-                className=" rounded-2xl"
-              />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
-
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  VEERPATH DEFENCE ACADEMY
-                </h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  Modern facilities for comprehensive learning
-                </p>
-              </div>
-            </div>{" "}
-            {/* Location Details */}
-            <div className="flex flex-col justify-center">
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-600">
-                    <MapPinIcon className="h-6 w-6 text-white" />
+        </div>{" "}
+        <div className="mx-auto mt-16 max-w-6xl">
+          <div className="grid grid-cols-1 gap-8 lg:gap-12 lg:grid-cols-3">
+            {/* Location Details */}{" "}
+            <div className="lg:col-span-2 flex flex-col justify-center">
+              <div className="space-y-8">
+                {" "}
+                {/* Location Info Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {/* Address Card */}
+                  <div className="relative bg-white pt-8 pb-6 px-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-700 shadow-lg">
+                        <MapPinIcon className="h-5 w-5 text-white" />
+                      </div>
+                    </div>
+                    <div className="text-center pt-2">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        Address
+                      </h3>
+                      <p className="text-gray-700 font-medium leading-relaxed">
+                        832 Radhanagar, Bulandshahr
+                      </p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Uttar Pradesh, India
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      Address
-                    </h3>
-                    <p className="text-gray-600">832 Radhanagar, Bulandshahr</p>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Uttar Pradesh, India
-                    </p>
+
+                  {/* Contact Card */}
+                  <div className="relative bg-white pt-8 pb-6 px-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-green-600 to-green-700 shadow-lg">
+                        <PhoneIcon className="h-5 w-5 text-white" />
+                      </div>
+                    </div>
+                    <div className="text-center pt-2">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        Contact
+                      </h3>
+                      <a
+                        href="tel:+91-9897841033"
+                        className="text-green-600 hover:text-green-500 font-semibold text-lg transition-colors duration-200 block"
+                      >
+                        +91-9897841033
+                      </a>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Call for directions
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Visit Hours Card */}
+                  <div className="relative bg-white pt-8 pb-6 px-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 md:col-span-2 lg:col-span-1">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 to-purple-700 shadow-lg">
+                        <ClockIcon className="h-5 w-5 text-white" />
+                      </div>
+                    </div>
+                    <div className="text-center pt-2">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        Visit Hours
+                      </h3>
+                      <p className="text-gray-700 font-medium">
+                        Mon-Sat: 9:00 AM - 6:00 PM
+                      </p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Sunday by appointment
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-600">
-                    <PhoneIcon className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      Contact
-                    </h3>
-                    <a
-                      href="tel:+91-9897841033"
-                      className="text-green-600 hover:text-green-500 font-medium"
-                    >
-                      +91-9897841033
-                    </a>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Call for directions
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-600">
-                    <ClockIcon className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      Visit Hours
-                    </h3>
-                    <p className="text-gray-600">Mon-Sat: 9:00 AM - 6:00 PM</p>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Sunday by appointment
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-4">
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
                   <a
                     href="https://maps.google.com/?q=832+Radhanagar,+Bulandshahr"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
+                    className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-3 text-base font-semibold text-white shadow-lg hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 transform hover:scale-105"
                   >
-                    <MapPinIcon className="h-4 w-4 mr-2" />
+                    <MapPinIcon className="h-5 w-5 mr-2" />
                     Get Directions
+                  </a>
+                  <a
+                    href="tel:+91-9897841033"
+                    className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-6 py-3 text-base font-semibold text-white shadow-lg hover:from-green-700 hover:to-green-800 transition-all duration-200 transform hover:scale-105"
+                  >
+                    <PhoneIcon className="h-5 w-5 mr-2" />
+                    Call Now
                   </a>
                 </div>
               </div>
             </div>
+            {/* Campus Image */}
+            <div className="relative lg:col-span-1 flex justify-center lg:justify-end">
+              <div className="max-w-md w-full">
+                <Image
+                  src="/images/3.jpg"
+                  alt="Success at VEERPATH DEFENCE ACADEMY"
+                  width={500}
+                  height={400}
+                  className="w-full max-h-[500px] rounded-2xl object-contain shadow-lg bg-gray-50 hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
+
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg p-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    VEERPATH DEFENCE ACADEMY
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Modern facilities for comprehensive learning
+                  </p>
+                </div>
+              </div>
+            </div>{" "}
           </div>{" "}
         </div>
       </div>
