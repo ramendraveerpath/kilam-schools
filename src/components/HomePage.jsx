@@ -71,23 +71,17 @@ const testimonials = [
 ];
 
 export default function HomePage() {
-  const router = useRouter();
-
-  const handleEnquiryClick = () => {
-    router.push("/form");
-  };
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-24">
-        {/* Added pt-24 for fixed navbar */}
+      {/* Hero Section with Image */}
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-24 pb-12 md:pb-24">
         <div
           aria-hidden="true"
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
         />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16 lg:items-center">
-            <div className="lg:pr-8 lg:-mt-20">
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16">
+            <div className="lg:pr-8 max-w-lg lg:max-w-xl pt-20 md:pt-24">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 Premier Coaching for{" "}
                 <span className="text-indigo-600">
@@ -112,20 +106,20 @@ export default function HomePage() {
                   Start Your Journey
                 </Link>
                 <a
-                  href="#features"
+                  href="/about"
                   className="text-sm font-semibold leading-6 text-gray-900"
                 >
                   Learn more <span aria-hidden="true">→</span>
                 </a>
               </div>
-            </div>
-            <div className="mt-10 lg:mt-5 flex justify-center lg:justify-end">
+            </div>{" "}
+            <div className="mt-10 lg:mt-0 flex justify-center lg:justify-end">
               <Image
                 width={500}
-                height={100}
+                height={400}
                 alt="Sainik School Students"
                 src="/images/1.jpg"
-                className="w-ful rounded-2xl object-cover shadow-lg"
+                className="w-full rounded-2xl object-contain shadow-lg bg-gray-50 lg:aspect-auto"
                 priority
               />
             </div>
@@ -134,7 +128,7 @@ export default function HomePage() {
         <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
       </div>
       {/* Stats Section */}
-      <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-24 lg:px-8">
+      <div className="mx-auto py-12 max-w-7xl px-6 sm:py-24 lg:px-8">
         <div className="mx-auto flex flex-col ax-w-2xl lg:mx-0 items-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Proven Track Record of Success
@@ -145,7 +139,7 @@ export default function HomePage() {
             dreams.
           </p>
         </div>
-        <div className="mx-auto mt-16 flex max-w-2xl flex-col gap-8 lg:mx-0 lg:mt-20 lg:max-w-none lg:flex-row lg:items-end">
+        <div className="mx-auto mt-16 grid grid-col-2 md:flex max-w-md flex-col gap-8 lg:mx-0 lg:mt-20 lg:max-w-none lg:flex-row lg:items-end">
           {stats.map((stat) => (
             <div
               key={stat.name}
@@ -167,7 +161,7 @@ export default function HomePage() {
       {/* Features Section */}
       <div
         id="features"
-        className="mx-auto mt-32 max-w-7xl px-6 sm:mt-24 lg:px-8"
+        className="mx-auto py-12 max-w-7xl px-6 sm:py-24 lg:px-8"
       >
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -201,11 +195,11 @@ export default function HomePage() {
             ))}
           </dl>
         </div>
-      </div>{" "}
+      </div>
       {/* Testimonials Section */}
       <div
         id="testimonials"
-        className="mx-auto mt-32 max-w-7xl px-6 sm:mt-24 lg:px-8"
+        className="mx-auto py-12 max-w-7xl px-6 sm:py-24 lg:px-8"
       >
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -260,7 +254,7 @@ export default function HomePage() {
         </div>{" "}
       </div>
       {/* Campus Life Gallery Section */}
-      <div className="bg-white py-24 sm:py-32">
+      <div className="bg-white py-12 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -274,17 +268,17 @@ export default function HomePage() {
               shapes future leaders
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-2 gap-4 md:gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="relative overflow-hidden rounded-2xl bg-gray-900">
               <Image
                 src="/images/2.jpg"
                 alt="Academy Training Session"
                 width={600}
                 height={400}
-                className="h-64 w-full object-cover opacity-75 lg:h-80"
+                className="h-full w-full object-contain opacity-75 bg-gray-50"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
-              <div className="absolute inset-0 flex items-end p-8">
+              <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+              <div className="absolute inset-0 md:flex items-end p-8 hidden">
                 <div>
                   <h3 className="text-xl font-semibold text-white">
                     Interactive Learning Sessions
@@ -295,17 +289,17 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div>{" "}
             <div className="relative overflow-hidden rounded-2xl bg-gray-900">
               <Image
                 src="/images/3.jpg"
                 alt="Student Achievement Ceremony"
                 width={600}
                 height={400}
-                className="h-64 w-full object-cover opacity-75 lg:h-80"
+                className="h-full w-full object-contain opacity-75 bg-gray-50"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
-              <div className="absolute inset-0 flex items-end p-8">
+              <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+              <div className="absolute inset-0 hidden md:flex items-end p-8">
                 <div>
                   <h3 className="text-xl font-semibold text-white">
                     Achievement & Recognition
@@ -320,7 +314,7 @@ export default function HomePage() {
         </div>
       </div>
       {/* Target Exams Section */}
-      <div className="relative bg-gray-50 py-24 sm:py-32">
+      <div className="relative bg-gray-50 py-12 sm:py-24">
         {/* <div className="absolute inset-0 overflow-hidden">
           <Image
             src="/images/4.jpg"
@@ -390,10 +384,124 @@ export default function HomePage() {
                   disciplinary values
                 </dd>
               </div>
-            </dl>
+            </dl>{" "}
           </div>
         </div>
       </div>
+
+      {/* Director's Message Section */}
+      <div className="relative bg-white py-12 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center mb-16">
+            <h2 className="text-base font-semibold leading-7 text-indigo-600">
+              Leadership
+            </h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Director's Message
+            </p>
+          </div>
+
+          <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
+            {/* Director's Image */}
+            <div className="relative mb-8 lg:mb-0">
+              <div className="relative mx-auto max-w-md lg:max-w-none">
+                <Image
+                  src="/images/4.jpg"
+                  alt="Krishan Saini - Director, VDA"
+                  width={400}
+                  height={500}
+                  className="w-full rounded-2xl object-cover shadow-xl ring-1 ring-gray-400/10"
+                />
+                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Krishan Saini
+                  </h3>
+                  <p className="text-sm text-indigo-600 font-medium">
+                    Director, VDA
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Director's Message */}
+            <div className="lg:pl-8">
+              <div className="relative">
+                <svg
+                  className="absolute top-0 left-0 h-8 w-8 text-indigo-600/20 transform -translate-x-2 -translate-y-2"
+                  fill="currentColor"
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                >
+                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                </svg>
+
+                <div className="relative">
+                  <p className="text-lg leading-8 text-gray-600 mb-6">
+                    Dear Students, Parents, and Staff,
+                  </p>
+
+                  <div className="prose prose-lg text-gray-600 space-y-4">
+                    <p>
+                      I extend a warm welcome to all of you at{" "}
+                      <span className="font-semibold text-indigo-600">
+                        VEERPATH DEFENCE ACADEMY (VDA)
+                      </span>
+                      , where learning is not just a process but a journey
+                      toward selection. We effort in preparing students for the
+                      JNV/AISSEE/RMS entrance exams have been truly commendable.
+                      The commitment, creativity, and professionalism you have
+                      shown have created a strong foundation for our students'
+                      success.
+                    </p>
+
+                    <p>
+                      At VDA, we believe in empowering our students to become
+                      leaders, innovators, and responsible global citizens. We
+                      are committed to providing a dynamic and engaging
+                      environment where each student is encouraged to explore
+                      their potential and strive for greatness.
+                    </p>
+
+                    <p>
+                      Our dedicated faculty members, state-of-the-art
+                      facilities, and a curriculum that blends tradition with
+                      modernity ensure that students are well-prepared for the
+                      challenges of tomorrow. We understand that education is a
+                      partnership, and we work closely with parents to create a
+                      nurturing space for each child's success.
+                    </p>
+
+                    <p>
+                      As we continue to evolve, I invite all students to seize
+                      every opportunity to grow, to challenge themselves, and to
+                      always aim higher. Together, let's make VDA a place where
+                      dreams are realized and futures are built.
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <div className="flex items-center">
+                      <div className="flex-shrink-0">
+                        <CheckCircleIcon className="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <div className="ml-3">
+                        <p className="text-base font-semibold text-gray-900">
+                          Best regards,
+                        </p>
+                        <p className="text-lg font-bold text-indigo-600">
+                          Krishan Saini
+                        </p>
+                        <p className="text-sm text-gray-600">Director, VDA</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <CTA />
     </div>
   );

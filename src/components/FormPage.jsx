@@ -82,7 +82,7 @@ export default function FormPageFixed() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Admission Enquiry
+              For Free Guidance
             </h1>
             <p className="mt-6 text-lg leading-8 text-yellow-100">
               Take the first step towards joining VEERPATH DEFENCE ACADEMY -
@@ -160,28 +160,13 @@ export default function FormPageFixed() {
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
             >
               <option value="">Select Class</option>
+              <option value="3rd">3rd Class</option>
+              <option value="4th">4th Class</option>
+              <option value="5th">5th Class</option>
               <option value="6th">6th Class</option>
               <option value="7th">7th Class</option>
               <option value="8th">8th Class</option>
-              <option value="9th">9th Class</option>
-              <option value="10th">10th Class</option>
             </select>
-          </div>
-          <div>
-            <label
-              htmlFor="school"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Current School
-            </label>
-            <input
-              type="text"
-              id="school"
-              name="school"
-              value={formData.school}
-              onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border"
-            />
           </div>
           <div>
             <label

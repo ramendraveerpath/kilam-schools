@@ -4,12 +4,12 @@ import Link from "next/link";
 
 export default function CTA() {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 py-8 sm:py-16 rounded-4xl max-w-7xl mx-auto">
-      <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+    <div className="relative isolate bg-gray-900 mt-12 md:mt-24 py-8 sm:py-16 rounded-4xl max-w-7xl mx-auto overflow-visible">
+      <div className="absolute inset-0 -z-10 transform-gpu overflow-hidden blur-3xl rounded-4xl">
         <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-yellow-400 to-orange-500 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
       </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-1 relative overflow-visible">
           <div className="max-w-xl lg:max-w-lg">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Build Your Child's Future with the Right Guidance
@@ -38,15 +38,17 @@ export default function CTA() {
               <span className="text-sm">Over 1000+ successful admissions</span>
             </div>
           </div>
-          <div className="relative lg:order-last">
-            <Image
-              src="/images/3.jpg"
-              alt="Success at VEERPATH DEFENCE ACADEMY"
-              fill
-              className=" rounded-2xl"
-            />
-            <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
-          </div>{" "}
+          <div className="relative lg:absolute lg:order-last lg:right-0 lg:top-0 lg:w-1/3 lg:h-full lg:-translate-y-1/2">
+            <div className="relative h-full w-full">
+              <Image
+                src="/images/3.jpg"
+                alt="Success at VEERPATH DEFENCE ACADEMY"
+                width={375}
+                height={200}
+                className="rounded-2xl object-contain"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

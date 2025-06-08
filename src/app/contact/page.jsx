@@ -39,8 +39,8 @@ const contactInfo = [
   },
   {
     name: "Office Hours",
-    value: "Mon-Sat: 9:00 AM - 6:00 PM",
-    href: "#",
+    value: "Mon-Sat: 7:00 AM - 11:00 PM",
+    href: "/contact",
     icon: ClockIcon,
     description: "We're here to help during business hours",
   },
@@ -137,9 +137,9 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-white pt-20">
+    <div className="bg-white">
       {/* Hero Section with Image */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-24 pb-12 md:pb-24">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
           <div
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
@@ -149,10 +149,9 @@ export default function ContactPage() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-            <div className="max-w-xl lg:max-w-lg">
-              {" "}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16">
+            <div className="lg:pr-8 max-w-lg lg:max-w-xl pt-20 md:pt-24">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 Contact <span className="text-indigo-600">Us</span>
               </h1>
@@ -186,12 +185,13 @@ export default function ContactPage() {
                 </a>
               </div>
             </div>
-            <div className="relative lg:order-last">
+            <div className="relative mt-10 lg:mt-0 flex justify-center lg:justify-end">
               <Image
+               width={500}
+                height={400}
                 src="/images/3.jpg"
                 alt="Success at VEERPATH DEFENCE ACADEMY"
-                fill
-                className=" rounded-2xl"
+                className="w-full rounded-2xl object-contain shadow-lg bg-gray-50 lg:aspect-auto"
               />
               <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
             </div>{" "}

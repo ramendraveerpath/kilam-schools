@@ -173,8 +173,7 @@ const sainikClass9Pattern = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-white pt-24">
-      {" "}
+    <div className="bg-white pt-20">
       {/* Hero Section */}
       <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -186,9 +185,9 @@ export default function AboutPage() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-7xl px-6 y-24 m:py-32 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-            <div className="max-w-xl lg:max-w-lg pt-20">
+        <div className="mx-auto max-w-7xl px-6 y-24 m:py-32 lg:px-8 pt-4">
+          <div className="mx-auto grid max-w-3xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+            <div className="max-w-lg lg:max-w-xl pt-20 md:pt-24">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 About{" "}
                 <span className="text-indigo-600">
@@ -221,14 +220,14 @@ export default function AboutPage() {
                   Call Us <span aria-hidden="true">→</span>
                 </a>
               </div>
-            </div>
+            </div>{" "}
             <div className="relative">
               <Image
                 src="/images/2.jpg"
                 alt="VEERPATH DEFENCE ACADEMY"
                 width={500}
                 height={400}
-                className=" w-full rounded-2xl bg-gray-50 object-cover lg:aspect-auto"
+                className=" w-full rounded-2xl bg-gray-50 object-contain lg:aspect-auto"
               />
               <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
             </div>
@@ -256,7 +255,7 @@ export default function AboutPage() {
             {missionPoints.map((point) => (
               <div
                 key={point.title}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center p-4 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out"
               >
                 <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-indigo-600">
                   <point.icon
@@ -292,11 +291,11 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+            <dl className="grid max-w-xl grid-cols-1 gap-4 lg:gap-8 lg:max-w-none lg:grid-cols-3">
               {whyChooseUs.map((feature) => (
                 <div
                   key={feature.title}
-                  className="flex flex-col bg-white p-6 rounded-xl shadow-sm"
+                  className="flex flex-col bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out"
                 >
                   <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
                     <feature.icon
@@ -332,7 +331,7 @@ export default function AboutPage() {
           {courseOfferings.map((course) => (
             <div
               key={course.title}
-              className="flex flex-col rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10"
+              className="flex flex-col rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out"
             >
               <div className="flex items-center justify-between gap-x-4">
                 <h3 className="text-lg font-semibold leading-8 text-gray-900">
@@ -364,15 +363,15 @@ export default function AboutPage() {
             Target Exams
           </h3>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="rounded-lg bg-indigo-50 p-6 text-center">
+            <div className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out">
               <h4 className="font-semibold text-indigo-600">JNVST</h4>
               <p className="text-sm text-gray-600">Class 6 & 9</p>
             </div>
-            <div className="rounded-lg bg-indigo-50 p-6 text-center">
+            <div className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out">
               <h4 className="font-semibold text-indigo-600">AISSEE</h4>
               <p className="text-sm text-gray-600">Class 6 & 9</p>
             </div>
-            <div className="rounded-lg bg-indigo-50 p-6 text-center">
+            <div className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out">
               <h4 className="font-semibold text-indigo-600">RMS</h4>
               <p className="text-sm text-gray-600">Rashtriya Military School</p>
             </div>
@@ -618,7 +617,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-8 flex justify-center">
               <a
-                href="https://sainikschoolsociety.gov.in"
+                href="https://sainikschoolsociety.in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-x-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
@@ -809,7 +808,6 @@ export default function AboutPage() {
         </div>
       </div> */}
       <CTA />
-    
     </div>
   );
 }
