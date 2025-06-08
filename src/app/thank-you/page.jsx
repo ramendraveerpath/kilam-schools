@@ -5,20 +5,19 @@ import { useEffect, useState } from "react";
 export default function ThankYouPage() {
   const router = useRouter();
   const [countdown, setCountdown] = useState(10);
-
   useEffect(() => {
     const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          router.push("/");
-          return 0;
-        }
-        return prev - 1;
-      });
+      setCountdown((prev) => prev - 1);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [router]);
+  }, []);
+
+  useEffect(() => {
+    if (countdown <= 0) {
+      router.push("/");
+    }
+  }, [countdown, router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center px-4">

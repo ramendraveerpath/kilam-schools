@@ -119,9 +119,7 @@ export async function getHubSpotLeads({
       "lastmodifieddate",
       "hubspotscore",
       "notes",
-    ];
-
-    // Build filter groups for search
+    ]; // Build filter groups for search - use OR logic within the group
     let filterGroups = [];
     if (search) {
       filterGroups.push({
@@ -148,6 +146,11 @@ export async function getHubSpotLeads({
           },
           {
             propertyName: "school",
+            operator: "CONTAINS_TOKEN",
+            value: search,
+          },
+          {
+            propertyName: "parent_name",
             operator: "CONTAINS_TOKEN",
             value: search,
           },
@@ -220,16 +223,20 @@ export async function getHubSpotLeads({
     const apiResponse = await hubspotClient.crm.contacts.searchApi.doSearch(
       searchRequest
     );
-    const contacts = apiResponse.results || [];
-
-    // Map HubSpot contacts to application format
+    const contacts = apiResponse.results || []; // Map HubSpot contacts to application format
     const leads = contacts.map(mapHubSpotContactToLead);
+
+    // Get unique classes from the leads for filter dropdown
+    const uniqueClasses = [
+      ...new Set(leads.map((lead) => lead.class).filter(Boolean)),
+    ];
+
     // Get total count for pagination (with simpler query for better performance)
     let total = 0;
     try {
       const totalApiResponse =
         await hubspotClient.crm.contacts.searchApi.doSearch({
-          filterGroups: [], // Get all contacts for total count
+          filterGroups: filterGroups.length > 0 ? filterGroups : [], // Apply same filters for total count
           properties: ["email"], // minimal properties for count
           limit: 1,
         });
@@ -249,13 +256,12 @@ export async function getHubSpotLeads({
       avgLeadScore: 0,
       conversionRate: "0.0",
     };
-
     try {
       const statsApiResponse =
         await hubspotClient.crm.contacts.searchApi.doSearch({
           filterGroups: [],
           properties: ["hs_lead_status", "hubspotscore"],
-          limit: 1000, // Get more for accurate stats
+          limit: 200, // HubSpot's maximum limit per request
         });
 
       const allContacts = statsApiResponse.results || [];
@@ -281,6 +287,21 @@ export async function getHubSpotLeads({
       filters: {
         sources: ["Website Form", "Manual Entry", "Import"], // You can customize this
         statuses: ["New", "Contacted", "Qualified", "Converted", "Unqualified"],
+        classes:
+          uniqueClasses.length > 0
+            ? uniqueClasses
+            : [
+                "3rd",
+                "4th",
+                "5th",
+                "6th",
+                "7th",
+                "8th",
+                "9th",
+                "10th",
+                "11th",
+                "12th",
+              ],
       },
     };
   } catch (error) {
@@ -491,7 +512,7 @@ function getEmptyLeadsResponse({
     filters: {
       sources: ["Website Form", "Manual Entry", "Import"],
       statuses: ["New", "Contacted", "Qualified", "Converted", "Unqualified"],
-      classes: ["5th", "6th", "7th", "8th"],
+      classes: ["3rd", "4th", "5th", "6th", "7th", "8th"],
     },
     usingFallback: true,
     message:

@@ -179,15 +179,22 @@ export async function GET(request) {
     const totalLeads = filteredLeads.length;
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
-    const paginatedLeads = filteredLeads.slice(startIndex, endIndex);
-
-    // Calculate statistics
+    const paginatedLeads = filteredLeads.slice(startIndex, endIndex); // Calculate statistics
     const stats = {
       total: googleAdsLeads.length,
-      converted: googleAdsLeads.filter((lead) => lead.status === "Converted")
+      contacted: googleAdsLeads.filter((lead) => lead.status === "Contacted")
         .length,
       qualified: googleAdsLeads.filter((lead) => lead.status === "Qualified")
         .length,
+      converted: googleAdsLeads.filter((lead) => lead.status === "Converted")
+        .length,
+      avgCost:
+        googleAdsLeads.length > 0
+          ? (
+              googleAdsLeads.reduce((sum, lead) => sum + lead.cost, 0) /
+              googleAdsLeads.length
+            ).toFixed(2)
+          : 0,
       totalCost: googleAdsLeads.reduce((sum, lead) => sum + lead.cost, 0),
       avgLeadScore: Math.round(
         googleAdsLeads.reduce((sum, lead) => sum + lead.leadScore, 0) /
