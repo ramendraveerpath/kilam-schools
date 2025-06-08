@@ -164,10 +164,10 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center -m-1.5 p-1.5">
               <span className="sr-only">VEERPATH DEFENCE ACADEMY</span>
-              <TrophyIcon className="h-8 w-8 text-yellow-500" />
-              <span className="ml-2 text-xl font-bold text-white">
+               <Image src='/images/logo.png' alt='logo' width={100} height={70} className="h-8 w-auto" /> 
+              {/* <span className="ml-2 text-xl font-bold text-white">
                 VEERPATH DEFENCE ACADEMY
-              </span>
+              </span> */}
             </Link>
             <button
               type="button"
