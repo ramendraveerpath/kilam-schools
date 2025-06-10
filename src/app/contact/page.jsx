@@ -81,7 +81,7 @@ const faqs = [
     id: "success-rate",
     question: "What is your success rate?",
     answer:
-      "We have successfully helped 1000+ students secure admissions in their dream schools with our result-oriented study plan and expert guidance.",
+      "We have successfully helped upto 80% students secure admissions in their dream schools with our result-oriented study plan and expert guidance.",
   },
   {
     id: "enrollment",
@@ -471,7 +471,7 @@ export default function ContactPage() {
           </div>
           <div className="mt-12 text-center">
             <p className="text-lg text-gray-600 mb-6">
-              Join our family of 1000+ successful parents and students!
+              Join our family of upto 80% successful parents and students!
             </p>
             <Link
               href="/form"

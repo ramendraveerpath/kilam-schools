@@ -143,7 +143,7 @@ function GoogleLeadsPage() {
     try {
       // Fetch ALL filtered data for export (remove limit to get all matching records)
       const params = new URLSearchParams({
-        limit: "1000", // Increase limit to get more records for export
+        limit: "200", // Increase limit to get more records for export
         page: "1", // Start from first page
         ...(searchTerm && { search: searchTerm }),
         ...(statusFilter && { status: statusFilter }),

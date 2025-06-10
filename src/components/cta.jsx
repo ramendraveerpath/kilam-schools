@@ -35,7 +35,7 @@ export default function CTA() {
             </div>
             <div className="mt-8 flex justify-center items-center sm:justify-start text-gray-300 text-center sm:text-left mx-auto">
               <CheckCircleIcon className="h-5 w-5 mr-2 text-green-400" />
-              <span className="text-sm">1000+ successful admissions</span>
+              <span className="text-sm">Upto 80% successful admissions</span>
             </div>
           </div>
           <div className="relative hidden sm:block lg:absolute lg:order-last lg:right-0 lg:top-0 lg:w-1/3 lg:h-full lg:-translate-y-1/2">

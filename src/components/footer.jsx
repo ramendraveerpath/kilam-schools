@@ -111,7 +111,7 @@ export default function Footer() {
               <li>📞 +91-9897841033</li>
               <li>📍 832 Radhanagar, Bulandshahr</li>
               <li>🕒 Mon-Sat: 7AM-11PM</li>
-              <li>🏆 1000+ Successful Selections</li>
+              <li>🏆 Upto 80% Successful Selections</li>
             </ul>
           </div>
         </div>{" "}

@@ -23,9 +23,9 @@ import {
 import CTA from "@/components/cta";
 
 const stats = [
-  { name: "Successful Selections", value: "1000+", icon: TrophyIcon },
+  { name: "Successful Selections", value: "Upto 80%", icon: TrophyIcon },
   { name: "Years of Experience", value: "15+", icon: ClockIcon },
-  { name: "Expert Faculty", value: "25+", icon: UserGroupIcon },
+  { name: "Expert Faculty", value: "10+", icon: UserGroupIcon },
   { name: "Target Exams", value: "3+", icon: AcademicCapIcon },
 ];
 
@@ -50,7 +50,7 @@ const missionPoints = [
 
 const whyChooseUs = [
   {
-    title: "1000+ Successful Selections",
+    title: "Upto 80% Successful Selections",
     description: "Proven track record of student success",
     icon: TrophyIcon,
   },
