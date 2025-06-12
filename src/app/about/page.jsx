@@ -164,7 +164,7 @@ const sainikClass6Pattern = [
 ];
 
 const sainikClass9Pattern = [
-  { subject: "Hindi", questions: 50, marks: 4, totalMarks: 200 },
+  { subject: "Maths", questions: 50, marks: 4, totalMarks: 200 },
   { subject: "Intelligence", questions: 25, marks: 2, totalMarks: 50 },
   { subject: "English", questions: 25, marks: 2, totalMarks: 50 },
   { subject: "General Science", questions: 25, marks: 2, totalMarks: 50 },

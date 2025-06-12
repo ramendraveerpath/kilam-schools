@@ -70,7 +70,7 @@ export default function Navbar() {
               height={70}
               className="h-8 md:h-12 w-auto"
             />
-            <span className="ml-2 text-xl font-bold text-white hidden md:block">
+            <span className="ml-2 sm:text-xl text:base font-bold text-white  md:block">
               VEERPATH DEFENCE ACADEMY
             </span>
           </Link>

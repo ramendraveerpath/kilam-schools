@@ -15,7 +15,7 @@ export default function Footer() {
                 alt="logo"
                 width={100}
                 height={70}
-                 className="h-8 md:h-12 w-auto"
+                className="h-8 md:h-12 w-auto"
               />
               <span className="ml-2 text-lg md:text-2xl font-bold text-white">
                 VEERPATH DEFENCE ACADEMY
@@ -89,6 +89,11 @@ export default function Footer() {
                   About Us
                 </Link>
               </li>
+              <li>
+                <Link href="/privacyPolicy" className="text-gray-400 hover:text-white">
+                  Privacy Policy
+                </Link>
+              </li>
 
               <li>
                 <Link
@@ -103,17 +108,35 @@ export default function Footer() {
                   Enroll Now
                 </Link>
               </li>
+
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-white">Contact Info</h3>
-            <ul className="mt-4 space-y-2 text-gray-400">
-              <li>📞 +91-9897841033</li>
-              <li>📍 832 Radhanagar, Bulandshahr</li>
-              <li>🕒 Mon-Sat: 7AM-11PM</li>
-              <li>🏆 Upto 80% Successful Selections</li>
-            </ul>
+            <div>
+              <h3 className="text-sm font-semibold text-white">Contact Info</h3>
+              <ul className="mt-4 space-y-2 text-gray-400">
+                <li>📞 +91-9897841033</li>
+                <li>📍 832 Radhanagar, Bulandshahr</li>
+                <li>🕒 Mon-Sat: 7AM-11PM</li>
+                <li>🏆 Upto 80% Successful Selections</li>
+              </ul>
+            </div>
+
+            <div className=" mt-5">
+              <h3 className="text-sm font-semibold text-white">Alternative Address</h3>
+              <ul className="mt-4 space-y-2 text-gray-400">
+
+                <li>📍 Near Radhe Radhe Guest House Station Road
+                  Sumerpur Distric- Hamirpur
+                  UP-210502
+                </li>
+
+              </ul>
+            </div>
+
           </div>
+
+
         </div>{" "}
         <div className="mt-12 pt-8 border-t border-gray-800 text-center">
           <p className="text-gray-400">
