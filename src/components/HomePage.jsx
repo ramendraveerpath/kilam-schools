@@ -313,6 +313,30 @@ export default function HomePage() {
               </div> */}
             </div>
           </div>
+
+          <div className="mx-auto mt-16 grid grid-cols-1 gap-4 sm:mt-20 md:gap-8 lg:mx-0 lg:grid-cols-3">
+            {[
+              { src: "/images/children.jpeg", alt: "Academy Training Session" },
+              { src: "/images/cops.jpeg", alt: "Student Achievement Ceremony" },
+              { src: "/images/admission.jpeg", alt: "Academy Admission Session" },
+            ].map((img, index) => (
+              <div
+                key={index}
+                className="relative h-64 overflow-hidden rounded-2xl bg-gray-900"
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={600}
+                  height={500}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+
+
         </div>
       </div>
       {/* Target Exams Section */}
@@ -406,12 +430,12 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl w-full lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             {/* Director's Image */}
             <div className="relative mb-8 lg:mb-0">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
+              <div className="relative mx-auto max-w-sm lg:max-w-none">
                 <Image
-                  src="/images/dummy-director.jpg"
+                  src="/images/director.jpeg"
                   alt="Krishan Saini - Director, VDA"
                   width={300}
-                  height={400}
+                  height={200}
                   className="w-full rounded-2xl object-cover shadow-xl ring-1 ring-gray-400/10 hover:scale-105 transition-all duration-300 ease-in-out"
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">

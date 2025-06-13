@@ -32,8 +32,8 @@ const contactInfo = [
   },
   {
     name: "Email",
-    value: "info@veerpathdefence.com",
-    href: "mailto:info@veerpathdefence.com",
+    value: "info@veerpath.com",
+    href: "mailto:info@veerpath.com",
     icon: EnvelopeIcon,
     description: "Send us your queries and we'll respond quickly",
   },
@@ -553,7 +553,7 @@ export default function ContactPage() {
                   Call Us Now
                 </a>
                 <a
-                  href="mailto:info@veerpathdefence.com"
+                  href="mailto:info@veerpath.com"
                   className="inline-flex items-center justify-center rounded-md bg-gray-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-gray-500"
                 >
                   <EnvelopeIcon className="h-5 w-5 mr-2" />
