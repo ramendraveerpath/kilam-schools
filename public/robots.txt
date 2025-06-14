@@ -1,7 +1,9 @@
-# robots.txt for https://www.veerpath.com
-
+# *
 User-agent: *
-Disallow:
+Allow: /
 
-Sitemap: https://www.veerpath.com/sitemap.xml
+# Host
 Host: https://www.veerpath.com
+
+# Sitemaps
+Sitemap: https://www.veerpath.com/sitemap.xml

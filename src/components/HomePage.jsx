@@ -255,8 +255,9 @@ export default function HomePage() {
           ))}
         </div>{" "}
       </div>
+
       {/* Campus Life Gallery Section */}
-      <div className="bg-white py-12 sm:py-24">
+      <div className="bg-white py-12 sm:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -339,6 +340,90 @@ export default function HomePage() {
 
         </div>
       </div>
+
+
+      {/* Hostel gallery section */}
+      <div className="bg-white py-12 sm:py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-base font-semibold leading-7 text-indigo-600">
+                Hostels
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Live, Learn, and Grow
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                Discover a well-rounded hostel experience that blends comfort, community, and academic focus.
+              </p>
+            </div>
+
+            {/* Hostel Features Section */}
+            <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700 text-base">
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                🏠 <strong>Accommodation Options</strong><br />
+                Comfortable living arrangements with various room choices.
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                ⚡ <strong>Basic Amenities</strong><br />
+                24/7 Electricity, Water Supply, and High-Speed Wi-Fi.
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                🍽️ <strong>Meal Services</strong><br />
+                Nutritious meals served regularly in canteen or mess.
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                🎮 <strong>Recreation & Entertainment</strong><br />
+                Common areas for indoor games, TV, and relaxation.
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                📚 <strong>Study Rooms & Library</strong><br />
+                Dedicated quiet zones and academic support spaces.
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                🧼 <strong>Health & Hygiene</strong><br />
+                Regular cleaning, sanitization, and medical aid.
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                🔒 <strong>Safety & Security</strong><br />
+                Round-the-clock guards, CCTV, and secure entry.
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
+                📋 <strong>Hostel Rules & Regulations</strong><br />
+                Clear guidelines to maintain discipline and safety.
+              </div>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-4 md:gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl bg-gray-900">
+              <Image
+                src="/images/hostel1.jpeg"
+                alt="Academy Training Session"
+                width={600}
+                height={400}
+                className="h-full w-full object-contain opacity-75 bg-gray-50"
+              />
+
+            </div>{" "}
+            <div className="relative overflow-hidden rounded-2xl bg-gray-900">
+              <Image
+                src="/images/hostel2.jpeg"
+                alt="Student Achievement Ceremony"
+                width={600}
+                height={400}
+                className="h-full w-full object-contain opacity-75 bg-gray-50"
+              />
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
       {/* Target Exams Section */}
       <div className="relative bg-gray-50 py-12 sm:py-24">
         {/* <div className="absolute inset-0 overflow-hidden">

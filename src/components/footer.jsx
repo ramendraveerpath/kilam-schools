@@ -127,7 +127,7 @@ export default function Footer() {
               <ul className="mt-4 space-y-2 text-gray-400">
 
                 <li>📍 Near Radhe Radhe Guest House Station Road
-                  Sumerpur Distric- Hamirpur
+                  Sumerpur District Hamirpur
                   UP-210502
                 </li>
 
