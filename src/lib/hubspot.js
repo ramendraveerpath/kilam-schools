@@ -6,7 +6,7 @@ function getHubSpotClient() {
   let accessToken =
     process.env.HUBSPOT_ACCESS_TOKEN ||
     process.env.NEXT_PUBLIC_HUBSPOT_ACCESS_TOKEN ||
-    "pat-na2-eaf106cc-6b25-47e0-9c37-10d097917076"; // Fallback to known working token
+    "pat-na2-eaf106cc-6b25-47e0-9c37-10d097917076";
 
   console.log("🔧 getHubSpotClient() called");
   console.log("- NODE_ENV:", process.env.NODE_ENV);
@@ -133,9 +133,8 @@ function mapHubSpotContactToLead(contact) {
   const properties = contact.properties;
   return {
     id: contact.id,
-    studentName: `${properties.firstname || ""} ${
-      properties.lastname || ""
-    }`.trim(),
+    studentName: `${properties.firstname || ""} ${properties.lastname || ""
+      }`.trim(),
     email: properties.email || "",
     phone: properties.phone || "",
     class: properties.student_class || "",
@@ -344,17 +343,17 @@ export async function getHubSpotLeads({
           uniqueClasses.length > 0
             ? uniqueClasses
             : [
-                "3rd",
-                "4th",
-                "5th",
-                "6th",
-                "7th",
-                "8th",
-                "9th",
-                "10th",
-                "11th",
-                "12th",
-              ],
+              "3rd",
+              "4th",
+              "5th",
+              "6th",
+              "7th",
+              "8th",
+              "9th",
+              "10th",
+              "11th",
+              "12th",
+            ],
       },
     };
   } catch (error) {
@@ -393,17 +392,24 @@ export async function getHubSpotLeads({
  */
 export async function createHubSpotLead(formData) {
   try {
+    const client = getHubSpotClient();
+
+    if (!client) {
+      throw new Error("HubSpot client not initialized");
+    }
+
     const properties = mapFormDataToHubSpotProperties(formData);
 
     const simplePublicObjectInput = {
       properties,
     };
 
-    const apiResponse = await hubspotClient.crm.contacts.basicApi.create(
+    const apiResponse = await client.crm.contacts.basicApi.create(
       simplePublicObjectInput
     );
 
-    // Map the created contact back to application format
+    console.log("✅ HubSpot API Response:", apiResponse);
+
     const newLead = mapHubSpotContactToLead(apiResponse);
 
     return {
@@ -413,9 +419,8 @@ export async function createHubSpotLead(formData) {
       data: newLead,
     };
   } catch (error) {
-    console.error("HubSpot Create Lead Error:", error);
-    // Store in demo storage when HubSpot is not available
-    return createDemoLead(formData);
+    console.error("❌ HubSpot Create Lead Error:", error.message || error);
+    return createDemoLead(formData); // fallback
   }
 }
 
@@ -484,8 +489,8 @@ function calculateStats(contacts) {
   const avgLeadScore =
     scores.length > 0
       ? Math.round(
-          scores.reduce((sum, score) => sum + score, 0) / scores.length
-        )
+        scores.reduce((sum, score) => sum + score, 0) / scores.length
+      )
       : 0;
 
   const conversionRate =
@@ -554,18 +559,18 @@ function getEmptyLeadsResponse({
     avgLeadScore:
       demoLeadsData.length > 0
         ? Math.round(
-            demoLeadsData.reduce((sum, lead) => sum + lead.leadScore, 0) /
-              demoLeadsData.length
-          )
+          demoLeadsData.reduce((sum, lead) => sum + lead.leadScore, 0) /
+          demoLeadsData.length
+        )
         : 0,
     conversionRate:
       demoLeadsData.length > 0
         ? (
-            (demoLeadsData.filter((lead) => lead.status === "Converted")
-              .length /
-              demoLeadsData.length) *
-            100
-          ).toFixed(1)
+          (demoLeadsData.filter((lead) => lead.status === "Converted")
+            .length /
+            demoLeadsData.length) *
+          100
+        ).toFixed(1)
         : "0.0",
   };
 

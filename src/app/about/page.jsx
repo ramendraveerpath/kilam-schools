@@ -459,7 +459,7 @@ export default function AboutPage() {
                 <DocumentTextIcon className="h-5 w-5 text-indigo-600" />
                 Exam Pattern - Class 6th (2026)
               </h4>
-              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+              <div className=" overflow-scroll shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
@@ -533,7 +533,7 @@ export default function AboutPage() {
                 <DocumentTextIcon className="h-5 w-5 text-indigo-600" />
                 Exam Pattern - Class 9th (2026)
               </h4>
-              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+              <div className="overflow-scroll shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
@@ -645,7 +645,7 @@ export default function AboutPage() {
                 <DocumentTextIcon className="h-5 w-5 text-indigo-600" />
                 Exam Pattern - Class 6th (2026)
               </h4>
-              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+              <div className="overflow-scroll shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
@@ -719,7 +719,7 @@ export default function AboutPage() {
                 <DocumentTextIcon className="h-5 w-5 text-indigo-600" />
                 Exam Pattern - Class 9th (2026)
               </h4>
-              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+              <div className="overflow-scroll shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
