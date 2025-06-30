@@ -4,6 +4,9 @@ import { Client } from "@hubspot/api-client";
 function getHubSpotClient() {
   // Try multiple ways to get the access token
   let accessToken = "pat-na2-c6665ef6-408e-410a-a6b8-2329e4406df9"
+
+  // token
+  
    
 
   console.log("🔧 getHubSpotClient() called");
