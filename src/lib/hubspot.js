@@ -3,10 +3,8 @@ import { Client } from "@hubspot/api-client";
 // Helper function to get HubSpot client (lazy initialization)
 function getHubSpotClient() {
   // Try multiple ways to get the access token
-  let accessToken =
-    process.env.HUBSPOT_ACCESS_TOKEN ||
-    process.env.NEXT_PUBLIC_HUBSPOT_ACCESS_TOKEN ||
-    "pat-na2-eaf106cc-6b25-47e0-9c37-10d097917076";
+  let accessToken = "pat-na2-c6665ef6-408e-410a-a6b8-2329e4406df9"
+   
 
   console.log("🔧 getHubSpotClient() called");
   console.log("- NODE_ENV:", process.env.NODE_ENV);

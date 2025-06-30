@@ -12,7 +12,7 @@ export default function FormPageFixed() {
     phone: "",
     class: "",
     school: "",
-   
+    parentName: "Test",
     address: "",
     interests: [],
   });
@@ -41,7 +41,11 @@ export default function FormPageFixed() {
       newErrors.phone = "Please enter a valid phone number";
     }
 
-  
+    // Optional field validation
+    if (formData.parentName && formData.parentName.trim().length < 2) {
+      newErrors.parentName = "Parent name must be at least 2 characters";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -60,7 +64,9 @@ export default function FormPageFixed() {
         [name]: "",
       }));
     }
-  }; // Helper function to handle submission success
+  }; 
+  
+  // Helper function to handle submission success
   const handleSubmissionSuccess = (result) => {
     const successMessage = result.usingFallback
       ? "Application received! We're processing your submission and will contact you soon."
@@ -78,7 +84,7 @@ export default function FormPageFixed() {
       phone: "",
       class: "",
       school: "",
-     
+      parentName: "",
       address: "",
       interests: [],
     });
@@ -144,7 +150,7 @@ export default function FormPageFixed() {
         studentName: formData.studentName.trim(),
         email: formData.email.trim().toLowerCase(),
         phone: formData.phone.trim(),
-
+        parentName: "test",
         address: formData.address.trim(),
         school: formData.school.trim(),
       };
@@ -327,7 +333,7 @@ export default function FormPageFixed() {
               <option value="8th">8th Class</option>
             </select>
           </div>
-    
+          
           <div>
             <label
               htmlFor="address"
