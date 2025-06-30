@@ -12,7 +12,7 @@ export default function FormPageFixed() {
     phone: "",
     class: "",
     school: "",
-    parentName: "",
+   
     address: "",
     interests: [],
   });
@@ -41,11 +41,7 @@ export default function FormPageFixed() {
       newErrors.phone = "Please enter a valid phone number";
     }
 
-    // Optional field validation
-    if (formData.parentName && formData.parentName.trim().length < 2) {
-      newErrors.parentName = "Parent name must be at least 2 characters";
-    }
-
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -82,7 +78,7 @@ export default function FormPageFixed() {
       phone: "",
       class: "",
       school: "",
-      parentName: "",
+     
       address: "",
       interests: [],
     });
@@ -148,7 +144,7 @@ export default function FormPageFixed() {
         studentName: formData.studentName.trim(),
         email: formData.email.trim().toLowerCase(),
         phone: formData.phone.trim(),
-        parentName: formData.parentName.trim(),
+
         address: formData.address.trim(),
         school: formData.school.trim(),
       };
@@ -331,37 +327,13 @@ export default function FormPageFixed() {
               <option value="8th">8th Class</option>
             </select>
           </div>
-          <div>
-            <label
-              htmlFor="parentName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Parent/Guardian Name
-            </label>{" "}
-            <input
-              type="text"
-              id="parentName"
-              name="parentName"
-              value={formData.parentName}
-              onChange={handleInputChange}
-              disabled={isSubmitting}
-              className={`mt-1 block w-full rounded-md shadow-sm focus:ring-yellow-500 sm:text-sm p-3 border transition-colors ${
-                errors.parentName
-                  ? "border-red-300 focus:border-red-500"
-                  : "border-gray-300 focus:border-yellow-500"
-              } ${isSubmitting ? "bg-gray-50 cursor-not-allowed" : ""}`}
-              placeholder="Parent or guardian's name"
-            />
-            {errors.parentName && (
-              <p className="mt-1 text-sm text-red-600">{errors.parentName}</p>
-            )}
-          </div>
+    
           <div>
             <label
               htmlFor="address"
               className="block text-sm font-medium text-gray-700"
             >
-              Address
+              City
             </label>{" "}
             <textarea
               id="address"
