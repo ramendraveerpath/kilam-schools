@@ -129,6 +129,19 @@ export default function HomePage() {
         </div>
         <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
       </div>
+
+        <div className=" w-full sm:px-16 px-2 rounded-4xl  py-2 flex justify-center items-center   ">
+          <Image
+            width={700}
+            height={50}
+            alt="Sainik School Students"
+            src="/images/home.webp"
+            className=" w-full rounded-4xl max-h-[500px]  "
+            priority
+          />
+        </div>
+  
+
       {/* Stats Section */}
       <div className="mx-auto py-12 max-w-7xl px-6 sm:py-24 lg:px-8 overflow-hidden">
         <div className="mx-auto flex flex-col ax-w-2xl lg:mx-0 items-center">
@@ -160,6 +173,7 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
       {/* Features Section */}
       <div
         id="features"
@@ -319,7 +333,10 @@ export default function HomePage() {
             {[
               { src: "/images/children.jpeg", alt: "Academy Training Session" },
               { src: "/images/cops.jpeg", alt: "Student Achievement Ceremony" },
-              { src: "/images/admission.jpeg", alt: "Academy Admission Session" },
+              {
+                src: "/images/admission.jpeg",
+                alt: "Academy Admission Session",
+              },
             ].map((img, index) => (
               <div
                 key={index}
@@ -335,12 +352,8 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-
-
-
         </div>
       </div>
-
 
       {/* Hostel gallery section */}
       <div className="bg-white py-12 sm:py-12">
@@ -354,42 +367,51 @@ export default function HomePage() {
                 Live, Learn, and Grow
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Discover a well-rounded hostel experience that blends comfort, community, and academic focus.
+                Discover a well-rounded hostel experience that blends comfort,
+                community, and academic focus.
               </p>
             </div>
 
             {/* Hostel Features Section */}
             <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700 text-base">
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                🏠 <strong>Accommodation Options</strong><br />
+                🏠 <strong>Accommodation Options</strong>
+                <br />
                 Comfortable living arrangements with various room choices.
               </div>
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                ⚡ <strong>Basic Amenities</strong><br />
+                ⚡ <strong>Basic Amenities</strong>
+                <br />
                 24/7 Electricity, Water Supply, and High-Speed Wi-Fi.
               </div>
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                🍽️ <strong>Meal Services</strong><br />
+                🍽️ <strong>Meal Services</strong>
+                <br />
                 Nutritious meals served regularly in canteen or mess.
               </div>
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                🎮 <strong>Recreation & Entertainment</strong><br />
+                🎮 <strong>Recreation & Entertainment</strong>
+                <br />
                 Common areas for indoor games, TV, and relaxation.
               </div>
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                📚 <strong>Study Rooms & Library</strong><br />
+                📚 <strong>Study Rooms & Library</strong>
+                <br />
                 Dedicated quiet zones and academic support spaces.
               </div>
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                🧼 <strong>Health & Hygiene</strong><br />
+                🧼 <strong>Health & Hygiene</strong>
+                <br />
                 Regular cleaning, sanitization, and medical aid.
               </div>
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                🔒 <strong>Safety & Security</strong><br />
+                🔒 <strong>Safety & Security</strong>
+                <br />
                 Round-the-clock guards, CCTV, and secure entry.
               </div>
               <div className="p-4 bg-gray-50 rounded-lg shadow-sm border">
-                📋 <strong>Hostel Rules & Regulations</strong><br />
+                📋 <strong>Hostel Rules & Regulations</strong>
+                <br />
                 Clear guidelines to maintain discipline and safety.
               </div>
             </div>
@@ -404,7 +426,6 @@ export default function HomePage() {
                 height={400}
                 className="h-full w-full object-contain opacity-75 bg-gray-50"
               />
-
             </div>{" "}
             <div className="relative overflow-hidden rounded-2xl bg-gray-900">
               <Image
@@ -414,15 +435,10 @@ export default function HomePage() {
                 height={400}
                 className="h-full w-full object-contain opacity-75 bg-gray-50"
               />
-
             </div>
           </div>
         </div>
       </div>
-
-
-
-
 
       {/* Target Exams Section */}
       <div className="relative bg-gray-50 py-12 sm:py-24">
@@ -517,7 +533,7 @@ export default function HomePage() {
             <div className="relative mb-8 lg:mb-0">
               <div className="relative mx-auto max-w-sm lg:max-w-none">
                 <Image
-                  src="/images/director.jpeg"
+                  src="/images/director.webp"
                   alt="Krishan Saini - Director, VDA"
                   width={300}
                   height={200}
