@@ -119,6 +119,7 @@ function HubSpotLeadsPage() {
       const result = await response.json();
 
       if (result.success) {
+        console.log(result.data);
         setAllLeadsData(result.data || []);
         setStats(result.stats || {});
         setFilters(result.filters || {});
