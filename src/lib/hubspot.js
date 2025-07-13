@@ -205,101 +205,72 @@ export { mapAppStatusToHubSpotStatus };
  * Get all contacts (leads) from HubSpot
  */
 export async function getHubSpotLeads({
-  page = 1,
-  limit = 10,
   search = "",
   status = "",
   source = "",
   classValue = "",
 } = {}) {
   console.log("🔍 getHubSpotLeads called with params:", {
-    page,
-    limit,
     search,
     status,
     source,
     classValue,
   });
 
-  // Get HubSpot client (lazy initialization)
   const hubspotClient = getHubSpotClient();
 
   if (!hubspotClient) {
-    console.warn("❌ HubSpot client not available - no access token");
-    console.log("🔄 Falling back to demo data...");
-    return getEmptyLeadsResponse({
-      page,
-      limit,
-      search,
-      status,
-      source,
-      classValue,
-    });
+    console.warn("❌ HubSpot client not available");
+    return getEmptyLeadsResponse({});
   }
 
-  console.log("✅ HubSpot client available, proceeding with API call...");
+  const properties = [
+    "email",
+    "firstname",
+    "lastname",
+    "phone",
+    "hs_lead_status",
+    "lifecyclestage",
+    "createdate",
+    "lastmodifieddate",
+    "hubspotscore",
+  ];
+
+  const allLeads = [];
+  let after = undefined;
+  const limit = 200; // Max allowed
+
   try {
-    const offset = (page - 1) * limit;
+    while (true) {
+      const searchRequest = {
+        filterGroups: [],
+        properties,
+        limit,
+        after,
+        sorts: [
+          {
+            propertyName: "createdate",
+            direction: "DESCENDING",
+          },
+        ],
+      };
 
-    console.log("🚀 Starting HubSpot API call...");
-    console.log("📋 Offset:", offset, "Limit:", limit);
+      const apiResponse = await hubspotClient.crm.contacts.searchApi.doSearch(searchRequest);
+      const contacts = apiResponse.results || [];
+      allLeads.push(...contacts);
 
-    // Properties to fetch - using only standard HubSpot properties first
-    const properties = [
-      "email",
-      "firstname",
-      "lastname",
-      "phone",
-      "hs_lead_status",
-      "lifecyclestage",
-      "createdate",
-      "lastmodifieddate",
-      "hubspotscore",
-    ]; // Simplified search request - start with no filters to ensure API works
-    const searchRequest = {
-      filterGroups: [], // No filters for now to avoid property issues
-      properties,
-      limit,
-      after: offset,
-      sorts: [
-        {
-          propertyName: "createdate",
-          direction: "DESCENDING",
-        },
-      ],
-    };
-    console.log("📞 Making API call to HubSpot...");
-    const apiResponse = await hubspotClient.crm.contacts.searchApi.doSearch(
-      searchRequest
-    );
-    console.log("📈 HubSpot API Response received!");
-    console.log("- Total results:", apiResponse.total);
-    console.log("- Results length:", apiResponse.results?.length || 0);
+      if (!apiResponse.paging || !apiResponse.paging.next) {
+        break; // No more pages
+      }
 
-    const contacts = apiResponse.results || []; // Map HubSpot contacts to application format
-    const leads = contacts.map(mapHubSpotContactToLead);
-
-    // Get unique classes from the leads for filter dropdown
-    const uniqueClasses = [
-      ...new Set(leads.map((lead) => lead.class).filter(Boolean)),
-    ]; // Get total count for pagination (with simpler query for better performance)
-    let total = 0;
-    try {
-      const totalApiResponse =
-        await hubspotClient.crm.contacts.searchApi.doSearch({
-          filterGroups: [], // No filters for count query
-          properties: ["email"], // minimal properties for count
-          limit: 1,
-        });
-      total = totalApiResponse.total || 0;
-    } catch (countError) {
-      console.warn(
-        "Could not get total count, using results length:",
-        countError.message
-      );
-      total = contacts.length;
+      after = apiResponse.paging.next.after;
     }
-    // Calculate statistics
+
+    const leads = allLeads.map(mapHubSpotContactToLead);
+
+    const uniqueClasses = [...new Set(leads.map((lead) => lead.class).filter(Boolean))];
+
+    // Fetch stats (optional and separate)
     let stats = {
       total: 0,
       converted: 0,
@@ -307,84 +278,45 @@ export async function getHubSpotLeads({
       avgLeadScore: 0,
       conversionRate: "0.0",
     };
-    try {
-      const statsApiResponse =
-        await hubspotClient.crm.contacts.searchApi.doSearch({
-          filterGroups: [],
-          properties: ["hs_lead_status", "hubspotscore"],
-          limit: 200, // HubSpot's maximum limit per request
-        });
 
-      const allContacts = statsApiResponse.results || [];
-      stats = calculateStats(allContacts);
+    try {
+      const statsApiResponse = await hubspotClient.crm.contacts.searchApi.doSearch({
+        filterGroups: [],
+        properties: ["hs_lead_status", "hubspotscore"],
+        limit: 200,
+      });
+
+      stats = calculateStats(statsApiResponse.results || []);
     } catch (statsError) {
-      console.warn(
-        "Could not calculate stats, using defaults:",
-        statsError.message
-      );
-      stats.total = total;
+      console.warn("Stats error:", statsError.message);
+      stats.total = allLeads.length;
     }
 
     return {
       success: true,
       data: leads,
       pagination: {
-        page,
-        limit,
-        total,
-        totalPages: Math.ceil(total / limit),
+        page: 1,
+        limit: allLeads.length,
+        total: allLeads.length,
+        totalPages: 1,
       },
       stats,
       filters: {
-        sources: ["Website Form", "Manual Entry", "Import"], // You can customize this
+        sources: ["Website Form", "Manual Entry", "Import"],
         statuses: ["New", "Contacted", "Qualified", "Converted", "Unqualified"],
         classes:
           uniqueClasses.length > 0
             ? uniqueClasses
-            : [
-              "3rd",
-              "4th",
-              "5th",
-              "6th",
-              "7th",
-              "8th",
-              "9th",
-              "10th",
-              "11th",
-              "12th",
-            ],
+            : ["3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th"],
       },
     };
   } catch (error) {
-    console.error("HubSpot API Error:", error);
-    console.error("Error details:", {
-      message: error.message,
-      stack: error.stack,
-      name: error.name,
-    });
-
-    // Check if it's an authentication error
-    if (error.message && error.message.includes("401")) {
-      console.error("Authentication failed - check HUBSPOT_ACCESS_TOKEN");
-    }
-
-    // Check if HubSpot client is properly initialized
-    if (!process.env.HUBSPOT_ACCESS_TOKEN) {
-      console.error("HUBSPOT_ACCESS_TOKEN environment variable is not set");
-    }
-
-    console.log("Falling back to demo data...");
-    // Return demo data structure when HubSpot API fails
-    return getEmptyLeadsResponse({
-      page,
-      limit,
-      search,
-      status,
-      source,
-      classValue,
-    });
+    console.error("HubSpot API Error:", error.message);
+    return getEmptyLeadsResponse({});
   }
 }
+
 
 /**
  * Create a new contact (lead) in HubSpot

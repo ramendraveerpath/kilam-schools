@@ -105,7 +105,9 @@ function HubSpotLeadsPage() {
           .filter(Boolean)
       ),
     ];
-  }, [allLeadsData]); // Fetch all HubSpot leads from API (called once on initial load)
+  }, [allLeadsData]); 
+  
+  // Fetch all HubSpot leads from API (called once on initial load)
   const fetchAllHubspotLeads = async () => {
     setTableLoading(true);
     try {
@@ -135,6 +137,8 @@ function HubSpotLeadsPage() {
       setTableLoading(false);
     }
   };
+
+  
   // Frontend filtering function
   const applyFilters = () => {
     setFilteringActive(true);
