@@ -204,6 +204,8 @@ export { mapAppStatusToHubSpotStatus };
 /**
  * Get all contacts (leads) from HubSpot
  */
+
+// checkk all locagtion
 export async function getHubSpotLeads({
   search = "",
   status = "",
