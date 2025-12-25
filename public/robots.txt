@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.veerpath.com
+
+# Sitemaps
+Sitemap: https://www.veerpath.com/sitemap.xml

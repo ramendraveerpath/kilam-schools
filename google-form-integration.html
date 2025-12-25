@@ -1,0 +1,33 @@
+<!-- Simple Google Sheets Integration -->
+<!-- 1. Go to your Google Sheet -->
+<!-- 2. Share it with "Anyone with the link can edit" -->
+<!-- 3. Use this iframe approach -->
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSf_YOUR_FORM_ID/formResponse" 
+      method="POST" target="hidden_iframe">
+  
+  <input name="entry.123456789" placeholder="Student Name" required>
+  <input name="entry.987654321" placeholder="Mobile" required>
+  <select name="entry.456789123" required>
+    <option value="">Select Class</option>
+    <option value="3rd">3rd</option>
+    <option value="4th">4th</option>
+    <!-- Add more options -->
+  </select>
+  <select name="entry.789123456" required>
+    <option value="">Select Course</option>
+    <option value="JNV/Sainik/RMS">JNV/Sainik/RMS</option>
+    <!-- Add more options -->
+  </select>
+  
+  <button type="submit">Submit</button>
+</form>
+
+<!-- Instructions:
+1. Create a Google Form with your fields
+2. Get the form's submission URL
+3. Replace the action URL above
+4. Replace entry IDs with actual ones from your form
+-->
