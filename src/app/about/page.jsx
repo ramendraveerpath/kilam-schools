@@ -371,8 +371,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-4">
             <a 
               href="https://navodaya.gov.in/nvs/en/Home1/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">JNVST</h4>
@@ -380,8 +378,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
             </a>
             <a 
               href="https://sainikschoolsociety.in/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">AISSEE</h4>
@@ -397,8 +393,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
             </div> */}
             <a 
               href="https://www.rashtriyamilitaryschools.edu.in/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">RMS</h4>
@@ -410,8 +404,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
             </div> */}
             <a 
               href="https://upsc.gov.in/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">DEFENCE EXAMS</h4>
@@ -423,8 +415,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
             </div> */}
             <a 
               href="https://cuet.nta.nic.in/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">CUET (UG & PG)</h4>
@@ -436,8 +426,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
             </div> */}
             <a 
               href="https://consortiumofnlus.ac.in/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">CLAT</h4>
@@ -449,8 +437,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
             </div> */}
             <a 
               href="https://www.cbse.gov.in/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">Board Exams</h4>
@@ -462,8 +448,6 @@ With a student-centered approach, accessible bilingual content, and a focus on c
             </div> */}
             <a 
               href="https://veerpathacademy.akamai.net.in/new-courses?folderId=42"
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-indigo-50 p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out block cursor-pointer"
             >
               <h4 className="font-semibold text-indigo-600">Economics Courses</h4>

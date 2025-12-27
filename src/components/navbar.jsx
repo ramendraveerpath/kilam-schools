@@ -75,7 +75,7 @@ export default function Navbar() {
               className="h-8 md:h-12 w-auto"
             />
             <span className="ml-2 sm:text-xl text:base font-bold text-white  md:block text-2xl">
-              VEERPATH ACADEMY(VDA)
+              VEERPATH ACADEMY (VDA)
             </span>
           </Link>
         </div>{" "}

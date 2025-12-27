@@ -21,7 +21,6 @@ export default function FormPageFixed() {
     if (!formData.mobile.trim()) newErrors.mobile = "Mobile number is required";
     if (!formData.currentClass) newErrors.currentClass = "Current Class is required";
     if (!formData.course) newErrors.course = "Course is required";
-    if (!acceptTerms) newErrors.terms = "Accept terms";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -264,25 +263,7 @@ export default function FormPageFixed() {
               {isSubmitting ? "Enviando..." : "Done"}
             </button>
 
-            <div className="flex items-start space-x-3 mt-3 lg:mt-4">
-              <input
-                type="checkbox"
-                id="terms"
-                checked={acceptTerms}
-                onChange={(e) => setAcceptTerms(e.target.checked)}
-                className="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-              />
-              <label htmlFor="terms" className="text-xs sm:text-sm text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </label>
-            </div>
-            {errors.terms && <p className="text-red-500 text-xs sm:text-sm">{errors.terms}</p>}
 
-            <div className="text-center mt-4 lg:mt-6">
-              <p className="text-xs sm:text-sm text-gray-500">
-                Quer saber mais? <a href="#" className="text-green-600 hover:underline">Confira nossa FAQ</a>
-              </p>
-            </div>
           </form>
         </div>
       </div>
