@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast, Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 export default function FormPageFixed() {
   const router = useRouter();
@@ -159,33 +160,31 @@ export default function FormPageFixed() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col lg:flex-row pt-27 lg:pt-28">
       {/* Left side - Tree planting image */}
-      <div className="w-1/2 relative" style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2013&q=80')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-          <h1 className="text-white text-5xl font-bold text-center leading-tight">
-            21° Plantio de<br />Árvores
-          </h1>
-        </div>
+      <div className="w-full lg:w-1/2 h-64 lg:h-auto relative overflow-hidden bg-gray-100 flex items-center justify-center">
+        <Image
+          src="/images/H1.png"
+          alt="Kilam Schools"
+          fill
+          className="object-contain"
+          priority
+        />
       </div>
 
       {/* Right side - Form */}
-      <div className="w-1/2 bg-gray-100 flex items-center justify-center p-8">
+      <div className="w-full lg:w-1/2 bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <div className="inline-block mb-4">
-              <svg className="w-12 h-12 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <div className="text-center mb-6 lg:mb-8">
+            <div className="inline-block mb-3 lg:mb-4">
+              <svg className="w-10 h-10 lg:w-12 lg:h-12 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd" />
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-green-600 mb-8">Inscreva-se!</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-green-600 mb-6 lg:mb-8">Counselling Session</h2>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
             <div>
               <label className="block text-gray-600 text-sm mb-2">Student Name</label>
               <input
@@ -260,12 +259,12 @@ export default function FormPageFixed() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-lg transition-colors"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 lg:py-4 rounded-lg transition-colors"
             >
-              {isSubmitting ? "Enviando..." : "Enviar"}
+              {isSubmitting ? "Enviando..." : "Done"}
             </button>
 
-            <div className="flex items-start space-x-3 mt-4">
+            <div className="flex items-start space-x-3 mt-3 lg:mt-4">
               <input
                 type="checkbox"
                 id="terms"
@@ -273,14 +272,14 @@ export default function FormPageFixed() {
                 onChange={(e) => setAcceptTerms(e.target.checked)}
                 className="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
               />
-              <label htmlFor="terms" className="text-sm text-gray-600">
+              <label htmlFor="terms" className="text-xs sm:text-sm text-gray-600">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </label>
             </div>
-            {errors.terms && <p className="text-red-500 text-sm">{errors.terms}</p>}
+            {errors.terms && <p className="text-red-500 text-xs sm:text-sm">{errors.terms}</p>}
 
-            <div className="text-center mt-6">
-              <p className="text-sm text-gray-500">
+            <div className="text-center mt-4 lg:mt-6">
+              <p className="text-xs sm:text-sm text-gray-500">
                 Quer saber mais? <a href="#" className="text-green-600 hover:underline">Confira nossa FAQ</a>
               </p>
             </div>

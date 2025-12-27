@@ -247,7 +247,7 @@ With a student-centered approach, accessible bilingual content, and a focus on c
       </div>{" "}
       {/* Mission Section */}
       <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
+        <div className="mx-auto max-w-2xl text-center lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
             🎯 Our Mission
           </h2>
@@ -285,7 +285,7 @@ With a student-centered approach, accessible bilingual content, and a focus on c
       {/* Why Choose Us Section */}
       <div className="bg-gray-50 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
+          <div className="mx-auto max-w-2xl text-center lg:text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">
               ✅ Why Choose Us
             </h2>
@@ -321,7 +321,7 @@ With a student-centered approach, accessible bilingual content, and a focus on c
       </div>
       {/* Courses Section */}
       <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
+        <div className="mx-auto max-w-2xl text-center lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
             📌 Our Courses
           </h2>
@@ -364,7 +364,7 @@ With a student-centered approach, accessible bilingual content, and a focus on c
         </div>
 
         {/* Target Exams */}
-        <div className="mx-auto mt-24 max-w-3xl lg:text-center">
+        <div className="mx-auto mt-24 max-w-3xl text-center lg:text-center">
           <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
             Target Exams
           </h3>

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import ProgressBar from "./ProgressBar";
+import WhatsAppWidget from "./WhatsAppWidget";
 
 const SharedLayout = ({ children }) => {
   return (
@@ -11,6 +12,7 @@ const SharedLayout = ({ children }) => {
       <Navbar />
       {children}
       <Footer />
+      <WhatsAppWidget />
     </div>
   );
 };

@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Veerpath Defence Academy",
-  description: "Premier Coaching for Navodaya & Sainik School Entrance Exams",
+  title: "Veerpath Academy(VDA) ",
+  description: "Affordable, reliable education designed for real results.Learn smarter, score higher, and unlock your true potential.विश्वास और अनुशासन से सफलता",
 };
 
 export const viewport = {
@@ -34,28 +34,28 @@ export default function RootLayout({ children }) {
       <Head>
         {/* Title & Meta Tags */}
         <title>
-          JNV & Sainik School Entrance Exam 2025 - Apply Online, Dates, Syllabus, Preparation
+          Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching 2025
         </title>
         <meta
           name="description"
-          content="Get complete details about JNV & Sainik School Entrance Exam 2025, including application process, dates, syllabus, exam pattern, preparation tips, and more."
+          content="Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies."
         />
         <meta
           name="keywords"
-          content="JNV entrance exam, Sainik school entrance exam, JNVST application, AISSEE exam dates, JNVST syllabus, Sainik school preparation, JNV admission, Sainik school entrance tips"
+          content="Veerpath Academy, VDA, JNV entrance exam coaching, Sainik school entrance exam preparation, JNVST coaching, AISSEE preparation, Navodaya coaching, entrance exam guidance"
         />
 
         {/* Open Graph */}
-        <meta property="og:title" content="JNV & Sainik School Entrance Exam 2025 - Apply Online, Dates, Syllabus, Preparation" />
-        <meta property="og:description" content="Get complete details about JNV & Sainik School Entrance Exam 2025, including application process, dates, syllabus, exam pattern, preparation tips, and more." />
+        <meta property="og:title" content="Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching 2025" />
+        <meta property="og:description" content="Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies." />
         <meta property="og:image" content="URL_to_image.jpg" />
         <meta property="og:url" content="https://your-website-url.com" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="JNV & Sainik School Entrance Exam 2025 - Apply Online, Dates, Syllabus, Preparation" />
-        <meta name="twitter:description" content="Get complete details about JNV & Sainik School Entrance Exam 2025, including application process, dates, syllabus, exam pattern, preparation tips, and more." />
+        <meta name="twitter:title" content="Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching 2025" />
+        <meta name="twitter:description" content="Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies." />
         <meta name="twitter:image" content="URL_to_image.jpg" />
 
         {/* Canonical & Robots */}
@@ -69,10 +69,10 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "http://schema.org",
               "@type": "Website",
-              name: "JNV & Sainik School Entrance Exam 2025",
+              name: "Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching",
               url: "https://your-website-url.com",
               description:
-                "Get complete details about JNV & Sainik School Entrance Exam 2025, including application process, dates, syllabus, exam pattern, preparation tips, and more.",
+                "Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies.",
             }),
           }}
         />

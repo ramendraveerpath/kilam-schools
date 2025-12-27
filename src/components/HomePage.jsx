@@ -54,7 +54,7 @@ const testimonials = [
     name: "Arjun Sharma",
     school: "Jawahar Navodaya Vidyalaya, Delhi",
     image: "/images/2.jpg",
-    text: "VEERPATH DEFENCE ACADEMY helped me crack JNVST in my first attempt. The mock tests and expert guidance were exceptional!",
+    text: "VEERPATH ACADEMY(VDA) helped me crack JNVST in my first attempt. The mock tests and expert guidance were exceptional!",
   },
   {
     name: "Priya Gupta",
@@ -74,8 +74,8 @@ export default function HomePage() {
   return (
     <div className="bg-white">
       {/* Banner Section */}
-      <div className="w-full pt-24 pb-8 px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden h-[300px] md:h-[400px]">
+      <div className="w-full pt-27 pb-0 px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden h-[80px] sm:h-[120px] md:h-[150px] lg:h-[300px]">
           <div className="flex animate-[slide_15s_infinite] hover:pause">
             <Image
               width={1200}
@@ -120,14 +120,14 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section with Image */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-2 pb-12 md:pb-24">
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 mt-8 md:mt-12 lg:mt-16 pt-0 pb-12 md:pb-24">
         <div
           aria-hidden="true"
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
         />{" "}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-3 lg:gap-x-12">
-            <div className="lg:col-span-2 lg:pr-8 pt-2 md:pt-4">
+            <div className="lg:col-span-2 lg:pr-8 pt-0">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 Your Dreams. Your Exams. Our Mission.
               </h1>
@@ -294,8 +294,8 @@ export default function HomePage() {
         id="features"
         className="mx-auto py-12 max-w-7xl px-6 sm:py-24 lg:px-8"
       >
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-base font-semibold leading-7 text-blue-600">
             Complete Preparation
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -365,8 +365,8 @@ export default function HomePage() {
               </button>
               
               {/* Phone mockup with sliding screens */}
-              <div className="relative mx-16">
-                <div className="w-80 h-[600px] bg-black rounded-[3rem] p-3 shadow-2xl">
+              <div className="relative mx-8 sm:mx-12">
+                <div className="w-56 h-[400px] sm:w-72 sm:h-[500px] bg-black rounded-[3rem] p-2 shadow-2xl">
                   <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
                     {/* Status bar */}
                     <div className="bg-gray-900 text-white text-xs px-4 py-2 flex justify-between items-center rounded-t-[2rem]">
@@ -381,13 +381,18 @@ export default function HomePage() {
                     {/* Sliding content */}
                     <div className="flex h-[calc(100%-2rem)] animate-[mobileSlide_12s_infinite] hover:pause">
                       <div className="flex-shrink-0 w-full h-full">
-                        <Image
-                          src="/images/M0.jpeg"
-                          alt="VeerPath Mobile App Screen 1"
-                          width={320}
-                          height={550}
-                          className="w-full h-full object-fill"
-                        />
+                        <a 
+                          href="https://play.google.com/store/apps/details?id=com.zntbwv.eehtyi&pcampaignid=web_share"
+                          className="block w-full h-full cursor-pointer"
+                        >
+                          <Image
+                            src="/images/M0.jpeg"
+                            alt="VeerPath Mobile App Screen 1"
+                            width={320}
+                            height={550}
+                            className="w-full h-full object-fill hover:opacity-90 transition-opacity"
+                          />
+                        </a>
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
@@ -471,8 +476,8 @@ export default function HomePage() {
       {/* New Testimonials Section with Moveable Cards */}
       <div className="bg-gray-50 py-12 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center mb-16">
-            <h2 className="text-base font-semibold leading-7 text-indigo-600">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-base font-semibold leading-7 text-blue-600">
               Success Stories
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -506,7 +511,7 @@ export default function HomePage() {
                     <p className="text-sm text-gray-600">Jawahar Navodaya Vidyalaya, Delhi</p>
                   </div>
                 </div>
-                <p className="text-gray-600">VEERPATH DEFENCE ACADEMY helped me crack JNVST in my first attempt. The mock tests and expert guidance were exceptional!</p>
+                <p className="text-gray-600">VEERPATH ACADEMY(VDA) helped me crack JNVST in my first attempt. The mock tests and expert guidance were exceptional!</p>
               </div>
 
               <div className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 shadow-lg">
@@ -887,8 +892,8 @@ export default function HomePage() {
 
        
       {/* Target Exams */}
-      <div className="mx-auto mt-24 max-w-3xl lg:text-center">
-        <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+      <div className="mx-auto mt-24 max-w-3xl text-center">
+        <h3 className="text-2xl font-bold tracking-tight text-blue-600 sm:text-3xl">
           Target Exams
         </h3>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-4">

@@ -572,16 +572,6 @@ export default function ContactPage() {
       </div>{" "}
       {/* Final CTA Section */}
       <CTA />
-      {/* Floating Contact Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <a
-          href="tel:+91-9897841033"
-          className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full shadow-2xl hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-110 animate-bounce"
-          title="Call Now"
-        >
-          <PhoneIcon className="h-8 w-8" />
-        </a>
-      </div>
     </div>
   );
 }
