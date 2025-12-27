@@ -74,9 +74,13 @@ export default function Navbar() {
               height={70}
               className="h-8 md:h-12 w-auto"
             />
-            <span className="ml-2 sm:text-xl text:base font-bold text-white  md:block text-2xl">
+            {/* <span className="ml-2 sm:text-xl text:base font-bold text-white  md:block text-2xl">
               VEERPATH ACADEMY (VDA)
-            </span>
+            </span> */}
+            <span className="ml-2 text-base sm:text-xl md:block text-2xl font-bold text-white whitespace-nowrap">
+  VEERPATH ACADEMY (VDA)
+</span>
+
           </Link>
         </div>{" "}
         {/* Right Side - Desktop Navigation and Mobile Menu Button */}
