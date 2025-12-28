@@ -46,7 +46,7 @@ export default function ThankYouPage() {
 
         <p className="text-gray-600 mb-6 leading-relaxed">
           Thank you for your interest in{" "}
-          <strong>VEERPATH DEFENCE ACADEMY</strong>. We have received your
+          <strong>VEERPATH ACADEMY (VDA)</strong>. We have received your
           application and will contact you within 24-48 hours to discuss the
           next steps.
         </p>

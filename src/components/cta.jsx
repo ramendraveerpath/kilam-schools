@@ -43,7 +43,7 @@ export default function CTA() {
             <div className="relative h-full w-full">
               <Image
                 src="/images/3.jpg"
-                alt="Success at VEERPATH DEFENCE ACADEMY"
+                alt="Success at VEERPATH ACADEMY (VDA)"
                 width={383}
                 height={200}
                 className="rounded-2xl object-contain"

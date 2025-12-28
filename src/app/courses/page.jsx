@@ -450,7 +450,7 @@ export default function CoursesPage() {
               Ready to Begin Your Preparation?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-indigo-200">
-              Join VEERPATH DEFENCE ACADEMY and take the first step towards your
+              Join VEERPATH ACADEMY (VAD) and take the first step towards your
               dream school. Limited seats available!
             </p>{" "}
             <div className="mt-10 flex items-center justify-center gap-x-6">

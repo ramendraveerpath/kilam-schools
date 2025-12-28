@@ -233,7 +233,7 @@ With a student-centered approach, accessible bilingual content, and a focus on c
                 >
                   <Image
                     src="/images/V1.png"
-                    alt="VEERPATH DEFENCE ACADEMY"
+                    alt="VEERPATH ACADEMY (VDA)"
                     width={700}
                     height={600}
                     className="w-full h-auto rounded-2xl bg-gray-50 object-contain lg:aspect-auto hover:scale-110 hover:shadow-2xl transition-all duration-300 ease-in-out"

@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 
 export const metadata = {
-  title: "Privacy Policy | Veerpath Defence Academy",
+  title: "Privacy Policy | Veerpath Academy (VDA)",
   description: "Read the privacy policy of www.veerpath.com to understand how we collect, use, and protect your data.",
 };
 
@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-800">
       <Head>
-        <title>Privacy Policy | Veerpath Defence Academy</title>
+        <title>Privacy Policy | Veerpath Academy (VDA)</title>
       </Head>
 
       <h1 className="text-3xl font-bold mb-4">Privacy Policy for www.veerpath.com</h1>
