@@ -30,7 +30,7 @@ Learn smarter, score higher, and unlock your true potential.
             <div className="mt-6 flex space-x-4">
               <a
                 href="https://www.youtube.com/@veerpathacademy"
-                className="text-gray-400 hover:text-red-500"
+                className="text-red-500 md:text-gray-400 md:hover:text-red-500"
               >
                 <span className="sr-only">YouTube</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ Learn smarter, score higher, and unlock your true potential.
               </a>
               <a
                 href="https://www.instagram.com/veerpathacademy"
-                className="text-gray-400 hover:text-pink-500"
+                className="text-pink-500 md:text-gray-400 md:hover:text-pink-500"
               >
                 <span className="sr-only">Instagram</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ Learn smarter, score higher, and unlock your true potential.
               </a>
               <a
                 href="https://www.facebook.com/veerpathacademy"
-                className="text-gray-400 hover:text-blue-500"
+                className="text-blue-500 md:text-gray-400 md:hover:text-blue-500"
               >
                 <span className="sr-only">Facebook</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -57,7 +57,7 @@ Learn smarter, score higher, and unlock your true potential.
               </a>
               <a
                 href="https://t.me/veerpathacademy"
-                className="text-gray-400 hover:text-blue-400"
+                className="text-blue-400 md:text-gray-400 md:hover:text-blue-400"
               >
                 <span className="sr-only">Telegram</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -66,7 +66,7 @@ Learn smarter, score higher, and unlock your true potential.
               </a>
               <a
                 href="https://whatsapp.com/channel/0029VbBkomJLNSZw4Qlxbb1o"
-                className="text-gray-400 hover:text-green-500"
+                className="text-green-500 md:text-gray-400 md:hover:text-green-500"
               >
                 <span className="sr-only">WhatsApp</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

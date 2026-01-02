@@ -74,15 +74,15 @@ export default function HomePage() {
   return (
     <div className="bg-white">
       {/* Banner Section */}
-      <div className="w-full pt-27 pb-0 px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden h-[80px] sm:h-[120px] md:h-[150px] lg:h-[300px]">
+      <div className="w-full pt-20 pb-0 px-0">
+        <div className="relative overflow-hidden h-[150px] sm:h-[180px] md:h-[200px] lg:h-[300px]">
           <div className="flex animate-[slide_15s_infinite] hover:pause">
             <Image
               width={1200}
               height={400}
               alt="Banner 1"
               src="/images/B1.jpeg"
-              className="flex-shrink-0 w-full h-full rounded-lg object-cover"
+              className="flex-shrink-0 w-full h-full object-cover"
               priority
             />
             <Image
@@ -90,21 +90,21 @@ export default function HomePage() {
               height={400}
               alt="Banner 2"
               src="/images/B2.jpeg"
-              className="flex-shrink-0 w-full h-full rounded-lg object-cover"
+              className="flex-shrink-0 w-full h-full object-cover"
             />
             <Image
               width={1200}
               height={400}
               alt="Banner 3"
-              src="/images/B3.jpeg"
-              className="flex-shrink-0 w-full h-full rounded-lg object-cover"
+              src="/images/B6.jpeg"
+              className="flex-shrink-0 w-full h-full object-cover"
             />
             <Image
               width={1200}
               height={400}
               alt="Banner 4"
               src="/images/B4.jpeg"
-              className="flex-shrink-0 w-full h-full rounded-lg object-cover"
+              className="flex-shrink-0 w-full h-full object-cover"
             />
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section with Image */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 mt-8 md:mt-12 lg:mt-16 pt-0 pb-12 md:pb-24">
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 mt-0 lg:mt-12 pt-0 pb-12 md:pb-24">
         <div
           aria-hidden="true"
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
@@ -366,7 +366,7 @@ export default function HomePage() {
               
               {/* Phone mockup with sliding screens */}
               <div className="relative mx-8 sm:mx-12">
-                <div className="w-56 h-[400px] sm:w-72 sm:h-[500px] bg-black rounded-[3rem] p-2 shadow-2xl">
+                <div className="w-80 h-[650px] sm:w-96 sm:h-[750px] bg-black rounded-[3rem] p-2 shadow-2xl">
                   <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
                     {/* Status bar */}
                     <div className="bg-gray-900 text-white text-xs px-4 py-2 flex justify-between items-center rounded-t-[2rem]">
@@ -388,9 +388,9 @@ export default function HomePage() {
                           <Image
                             src="/images/M0.jpeg"
                             alt="VeerPath Mobile App Screen 1"
-                            width={320}
-                            height={550}
-                            className="w-full h-full object-fill hover:opacity-90 transition-opacity"
+                            width={400}
+                            height={700}
+                            className="w-full h-full object-cover hover:opacity-90 transition-opacity"
                           />
                         </a>
                       </div>
@@ -398,54 +398,54 @@ export default function HomePage() {
                         <Image
                           src="/images/M1.jpeg"
                           alt="VeerPath Mobile App Screen 1"
-                          width={320}
-                          height={550}
-                          className="w-full h-full object-fill"
+                          width={400}
+                          height={700}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
                           src="/images/M2.jpeg"
                           alt="VeerPath Mobile App Screen 2"
-                          width={320}
-                          height={550}
-                          className="w-full h-full object-fill"
+                          width={400}
+                          height={700}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
                           src="/images/M3.jpeg"
                           alt="VeerPath Mobile App Screen 3"
-                          width={320}
-                          height={550}
-                          className="w-full h-full object-fill"
+                          width={400}
+                          height={700}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
                           src="/images/M4.jpeg"
                           alt="VeerPath Mobile App Screen 3"
-                          width={320}
-                          height={550}
-                          className="w-full h-full object-fill"
+                          width={400}
+                          height={700}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
                           src="/images/M5.jpeg"
                           alt="VeerPath Mobile App Screen 3"
-                          width={320}
-                          height={550}
-                          className="w-full h-full object-fill"
+                          width={400}
+                          height={700}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
                           src="/images/M6.jpeg"
                           alt="VeerPath Mobile App Screen 3"
-                          width={320}
-                          height={550}
-                          className="w-full h-full object-fill"
+                          width={400}
+                          height={700}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
