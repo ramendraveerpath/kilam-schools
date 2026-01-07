@@ -73,10 +73,56 @@ const testimonials = [
 export default function HomePage() {
   return (
     <div className="bg-white">
-      {/* Banner Section */}
-      <div className="w-full pt-20 pb-0 px-0">
-        <div className="relative overflow-hidden h-[150px] sm:h-[180px] md:h-[200px] lg:h-[300px]">
-          <div className="flex animate-[slide_15s_infinite] hover:pause">
+      {/* Banner Section - Small Screens */}
+      <div className="w-full pt-20 pb-0 px-0 lg:hidden">
+        <div className="relative overflow-hidden w-full">
+          <div className="flex animate-[slide_15s_infinite] hover:pause h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] w-full">
+            <Image
+              width={1200}
+              height={400}
+              alt="Banner 1"
+              src="/images/B7.jpeg"
+              className="flex-shrink-0 w-screen h-full object-cover"
+              priority
+            />
+            <Image
+              width={1200}
+              height={400}
+              alt="Banner 2"
+              src="/images/B10.jpeg"
+              className="flex-shrink-0 w-screen h-full object-cover"
+            />
+            <Image
+              width={1200}
+              height={400}
+              alt="Banner 3"
+              src="/images/B12.jpeg"
+              className="flex-shrink-0 w-screen h-full object-cover"
+            />
+            <Image
+              width={1200}
+              height={400}
+              alt="Banner 4"
+              src="/images/B11.jpeg"
+              className="flex-shrink-0 w-screen h-full object-cover"
+            />
+          </div>
+        </div>
+        <style jsx>{`
+          @keyframes slide {
+            0%, 22.5% { transform: translateX(0%); }
+            25%, 47.5% { transform: translateX(-100%); }
+            50%, 72.5% { transform: translateX(-200%); }
+            75%, 97.5% { transform: translateX(-300%); }
+            100% { transform: translateX(0%); }
+          }
+        `}</style>
+      </div>
+
+      {/* Banner Section - Large Screens */}
+      <div className="w-full pt-20 pb-0 px-0 hidden lg:block">
+        <div className="relative overflow-hidden">
+          <div className="flex animate-[slide_15s_infinite] hover:pause h-[300px]">
             <Image
               width={1200}
               height={400}
@@ -120,7 +166,7 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section with Image */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 mt-0 lg:mt-12 pt-0 pb-12 md:pb-24">
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 mt-6 sm:mt-8 lg:mt-12 pt-0 pb-12 md:pb-24">
         <div
           aria-hidden="true"
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
@@ -180,7 +226,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">What We Offer</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <a href="https://veerpathacademy.akamai.net.in/new-courses?folderId=17" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/new-courses?folderId=17" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -189,7 +235,7 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg object-cover hover:scale-105 hover:shadow-lg transition-all duration-300"
             />
           </a>
-          <a href="https://veerpathacademy.akamai.net.in/new-courses?folderId=18" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/new-courses?folderId=18" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -198,7 +244,7 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg object-cover hover:scale-105 hover:shadow-lg transition-all duration-300"
             />
           </a>
-          <a href="https://veerpathacademy.akamai.net.in/test-series" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/test-series" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -207,7 +253,7 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg object-cover hover:scale-105 hover:shadow-lg transition-all duration-300"
             />
           </a>
-          <a href="https://veerpathacademy.akamai.net.in/notes" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/notes" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -216,7 +262,7 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg object-cover hover:scale-105 hover:shadow-lg transition-all duration-300"
             />
           </a>
-          <a href="https://veerpathacademy.akamai.net.in/study-material" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/study-material" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -225,7 +271,7 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg object-cover hover:scale-105 hover:shadow-lg transition-all duration-300"
             />
           </a>
-          <a href="https://veerpathacademy.akamai.net.in/ebooks" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/ebooks" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -234,7 +280,7 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg object-cover hover:scale-105 hover:shadow-lg transition-all duration-300"
             />
           </a>
-          <a href="https://veerpathacademy.akamai.net.in/quiz" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/quiz" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -243,7 +289,7 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg object-cover hover:scale-105 hover:shadow-lg transition-all duration-300"
             />
           </a>
-          <a href="https://veerpathacademy.akamai.net.in/" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://veerpathacademy.akamai.net.in/" rel="noopener noreferrer" className="block">
             <Image
               width={300}
               height={200}
@@ -329,27 +375,27 @@ export default function HomePage() {
       </div>
 
       {/* Mobile App Section */}
-      <div className="bg-gradient-to-r from-pink-50 to-indigo-50 py-16 sm:py-24 relative mx-4 sm:mx-8 lg:mx-16 rounded-3xl">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2 lg:items-center">
+      <div className="bg-gradient-to-r from-pink-50 to-indigo-50 py-12 xs:py-16 sm:py-24 relative mx-2 xs:mx-4 sm:mx-8 lg:mx-16 rounded-2xl xs:rounded-3xl">
+        <div className="mx-auto max-w-7xl px-4 xs:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 xs:gap-x-8 gap-y-12 xs:gap-y-16 lg:max-w-none lg:grid-cols-2 lg:items-center">
             <div className="lg:pr-8">
-              <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
                 Start Your Journey With 
               </h2>
-              <h3 className="text-4xl font-bold tracking-tight text-yellow-600 sm:text-5xl">
+              <h3 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-yellow-600 mt-2">
                 <span className="text-blue-600">VEERPATH ACADEMY</span> 
               </h3>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className="mt-4 xs:mt-6 text-base xs:text-lg leading-8 text-gray-600">
                 Download the app from Google PlayStore
               </p>
-              <div className="mt-8">
+              <div className="mt-6 xs:mt-8">
                 <a 
                   href="https://play.google.com/store/apps/details?id=com.zntbwv.eehtyi&pcampaignid=web_share"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+                  className="inline-flex items-center bg-black text-white px-4 xs:px-6 py-2 xs:py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm xs:text-base"
                 >
-                  <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-5 xs:w-6 h-5 xs:h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                   </svg>
                   ANDROID APP ON Google play
@@ -357,16 +403,16 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative flex items-center justify-center lg:justify-end">
-              {/* Left Navigation arrow */}
-              <button className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 rounded-full p-2 shadow-lg hover:bg-white transition-colors">
+              {/* Left Navigation arrow - hidden on small screens */}
+              <button className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 rounded-full p-2 shadow-lg hover:bg-white transition-colors hidden sm:block">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               
               {/* Phone mockup with sliding screens */}
-              <div className="relative mx-8 sm:mx-12">
-                <div className="w-80 h-[650px] sm:w-96 sm:h-[750px] bg-black rounded-[3rem] p-2 shadow-2xl">
+              <div className="relative mx-4 xs:mx-6 sm:mx-8 lg:mx-12">
+                <div className="w-72 h-[550px] xs:w-80 xs:h-[600px] sm:w-96 sm:h-[700px] bg-black rounded-[2.5rem] xs:rounded-[3rem] p-2 shadow-2xl">
                   <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
                     {/* Status bar */}
                     <div className="bg-gray-900 text-white text-xs px-4 py-2 flex justify-between items-center rounded-t-[2rem]">
@@ -396,7 +442,7 @@ export default function HomePage() {
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
-                          src="/images/M1.jpeg"
+                          src="/images/M2.jpeg"
                           alt="VeerPath Mobile App Screen 1"
                           width={400}
                           height={700}
@@ -405,7 +451,7 @@ export default function HomePage() {
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
-                          src="/images/M2.jpeg"
+                          src="/images/M3.jpeg"
                           alt="VeerPath Mobile App Screen 2"
                           width={400}
                           height={700}
@@ -414,7 +460,7 @@ export default function HomePage() {
                       </div>
                       <div className="flex-shrink-0 w-full h-full">
                         <Image
-                          src="/images/M3.jpeg"
+                          src="/images/M1.jpeg"
                           alt="VeerPath Mobile App Screen 3"
                           width={400}
                           height={700}
@@ -453,8 +499,8 @@ export default function HomePage() {
                 </div>
               </div>
               
-              {/* Right Navigation arrow */}
-              <button className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 rounded-full p-2 shadow-lg hover:bg-white transition-colors">
+              {/* Right Navigation arrow - hidden on small screens */}
+              <button className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 rounded-full p-2 shadow-lg hover:bg-white transition-colors hidden sm:block">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -464,10 +510,13 @@ export default function HomePage() {
         </div>
         <style jsx>{`
           @keyframes mobileSlide {
-            0%, 30% { transform: translateX(0); }
-            33.33%, 63.33% { transform: translateX(-100%); }
-            66.66%, 96.66% { transform: translateX(-200%); }
-            100% { transform: translateX(0); }
+            0%, 13% { transform: translateX(0); }
+            15%, 28% { transform: translateX(-100%); }
+            30%, 43% { transform: translateX(-200%); }
+            45%, 58% { transform: translateX(-300%); }
+            60%, 73% { transform: translateX(-400%); }
+            75%, 88% { transform: translateX(-500%); }
+            90%, 100% { transform: translateX(-600%); }
           }
         `}</style>
       </div>
