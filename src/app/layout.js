@@ -105,7 +105,6 @@
 //   children: PropTypes.node.isRequired,
 // };
 
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -126,12 +125,14 @@ const geistMono = Geist_Mono({
 
 /* SEO Metadata (ONLY SOURCE OF TRUTH) */
 export const metadata = {
-  title: {
-    default: "Veerpath Academy (VDA)",
-    template: "%s | Veerpath Academy (VDA)",
-  },
+  title: "Veerpath Academy (VDA) – JNV & Sainik School Coaching",
   description:
     "Veerpath Academy (VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Affordable, reliable education designed for real results.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+
   keywords: [
     "Veerpath Academy",
     "VDA",
@@ -141,21 +142,21 @@ export const metadata = {
     "Navodaya entrance coaching",
   ],
   openGraph: {
-  title: "Veerpath Academy (VDA) – JNV & Sainik School Coaching",
-  description:
-    "Expert coaching for JNV & Sainik School entrance exams 2025 with proven results.",
-  url: "https://www.veerpath.com",
-  siteName: "Veerpath Academy",
-  images: [
-    {
-      url: "https://veerpath.com/images/logo.png",
-      width: 300,
-      height: 300,
-      alt: "Veerpath Academy Logo",
-    },
-  ],
-  type: "website",
-},
+    title: "Veerpath Academy (VDA) – JNV & Sainik School Coaching",
+    description:
+      "Expert coaching for JNV & Sainik School entrance exams 2025 with proven results.",
+    url: "https://www.veerpath.com",
+    siteName: "Veerpath Academy",
+    images: [
+      {
+        url: "https://veerpath.com/images/logo.png",
+        width: 300,
+        height: 300,
+        alt: "Veerpath Academy Logo",
+      },
+    ],
+    type: "website",
+  },
 
   robots: {
     index: true,
@@ -189,7 +190,13 @@ export default function RootLayout({ children }) {
               "@type": "EducationalOrganization",
               name: "Veerpath Academy",
               url: "https://www.veerpath.com",
-              logo: "https://veerpath.com/images/logo.png",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://veerpath.com/images/logo.png",
+                width: 300,
+                height: 300,
+              },
+
               image: "https://veerpath.com/images/logo.png",
               address: {
                 "@type": "PostalAddress",
