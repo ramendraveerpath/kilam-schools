@@ -128,6 +128,11 @@ export const metadata = {
   title: "Veerpath Academy (VDA) – JNV & Sainik School Coaching",
   description:
     "Veerpath Academy (VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Affordable, reliable education designed for real results.",
+
+  verification: {
+    google: "rBZai-EtwW8z9lnNse-l3ajctGODPo_E4Tki7h1LA3Q",
+  },
+
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -141,6 +146,7 @@ export const metadata = {
     "AISSEE preparation",
     "Navodaya entrance coaching",
   ],
+
   openGraph: {
     title: "Veerpath Academy (VDA) – JNV & Sainik School Coaching",
     description:
@@ -163,6 +169,7 @@ export const metadata = {
     follow: true,
   },
 };
+
 
 /* Viewport */
 export const viewport = {
