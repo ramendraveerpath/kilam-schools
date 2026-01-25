@@ -126,17 +126,7 @@ Learn smarter, score higher, and unlock your true potential.
               </ul>
             </div>
 
-            <div className=" mt-5">
-              <h3 className="text-sm font-semibold text-white">Alternative Address</h3>
-              <ul className="mt-4 space-y-2 text-gray-400">
 
-                <li>📍 Near Radhe Radhe Guest House Station Road
-                  Sumerpur District Hamirpur
-                  UP-210502
-                </li>
-
-              </ul>
-            </div>
 
           </div>
 

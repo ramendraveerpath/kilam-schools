@@ -1,110 +1,3 @@
-// import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
-// import { AuthProvider } from "@/contexts/AuthContext";
-// import ConditionalLayout from "@/components/ConditionalLayout";
-// import PropTypes from "prop-types";
-// import Script from "next/script";
-// // import Head from "next/head"; // ✅ Import Head
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-// export const metadata = {
-//   title: "Veerpath Academy(VDA) ",
-//   description: "Affordable, reliable education designed for real results.Learn smarter, score higher, and unlock your true potential.विश्वास और अनुशासन से सफलता",
-// };
-
-// export const viewport = {
-//   width: "device-width",
-//   initialScale: 1,
-//   maximumScale: 1,
-//   userScalable: false,
-// };
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en" className="h-full bg-white">
-//       <Head>
-//         {/* Title & Meta Tags */}
-//         <title>
-//           Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching 2025
-//         </title>
-//         <meta
-//           name="description"
-//           content="Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies."
-//         />
-//         <meta
-//           name="keywords"
-//           content="Veerpath Academy, VDA, JNV entrance exam coaching, Sainik school entrance exam preparation, JNVST coaching, AISSEE preparation, Navodaya coaching, entrance exam guidance"
-//         />
-
-//         {/* Open Graph */}
-//         <meta property="og:title" content="Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching 2025" />
-//         <meta property="og:description" content="Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies." />
-//         <meta property="og:image" content="URL_to_image.jpg" />
-//         <meta property="og:url" content="https://your-website-url.com" />
-//         <meta property="og:type" content="website" />
-
-//         {/* Twitter Card */}
-//         <meta name="twitter:card" content="summary_large_image" />
-//         <meta name="twitter:title" content="Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching 2025" />
-//         <meta name="twitter:description" content="Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies." />
-//         <meta name="twitter:image" content="URL_to_image.jpg" />
-
-//         {/* Canonical & Robots */}
-//         <link rel="canonical" href="https://your-website-url.com" />
-//         <meta name="robots" content="index, follow" />
-
-//         {/* JSON-LD Structured Data */}
-//         <script
-//           type="application/ld+json"
-//           dangerouslySetInnerHTML={{
-//             __html: JSON.stringify({
-//               "@context": "http://schema.org",
-//               "@type": "Website",
-//               name: "Veerpath Academy(VDA) - JNV & Sainik School Entrance Exam Coaching",
-//               url: "https://your-website-url.com",
-//               description:
-//                 "Veerpath Academy(VDA) offers expert coaching for JNV & Sainik School entrance exams 2025. Get complete guidance on application, syllabus, exam pattern, and preparation strategies.",
-//             }),
-//           }}
-//         />
-//       </Head>
-
-//       {/* Google Tag Manager */}
-//       <Script
-//         src="https://www.googletagmanager.com/gtag/js?id=AW-17185201352"
-//         strategy="afterInteractive"
-//       />
-//       <Script id="gtag-init" strategy="afterInteractive">
-//         {`
-//           window.dataLayer = window.dataLayer || [];
-//           function gtag(){dataLayer.push(arguments);}
-//           gtag('js', new Date());
-//           gtag('config', 'AW-17185201352');
-//         `}
-//       </Script>
-
-//       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
-//         <AuthProvider>
-//           <ConditionalLayout>{children}</ConditionalLayout>
-//         </AuthProvider>
-//       </body>
-//     </html>
-//   );
-// }
-
-// RootLayout.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -183,9 +76,29 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full bg-white">
+      <head>
+        {/* Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WPM23SJP');`,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WPM23SJP"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+
         {/* ✅ EducationalOrganization Schema (Google Highlight Images Source) */}
         <Script
           id="schema-educational-organization"
